@@ -24,8 +24,6 @@ data Answer:
     cid: ?CID
     worker: Worker
     errors: []string
-    ls: []string
-    vault_put: string
 
 func computeSizePersist() -> []Answer:
     deals <- Deals.get()
@@ -43,17 +41,16 @@ func computeSizePersist() -> []Answer:
         if w.worker_id != nil:
             on w.worker_id! via w.host_id:
                 vault <- Vault.put("qwerty")
-                -- ls <- MyService.ls_vault()
                 result <- MyService.file_size(vault)
                 if result.success:
                     write <- MyService.write_file_size(result.size)
                     if write.success:
-                        cid <- MyService.pack(write.path, vault, "qwerty_size")
-                        answers <<- Answer(vault_put = vault, ls = [], cid = ?[cid], worker = w, errors = nil)
+                        cid <- MyService.pack(write.path, "/tmp/vault", "qwerty_size")
+                        answers <<- Answer(cid = ?[cid], worker = w, errors = nil)
                     else:
-                        answers <<- Answer(vault_put = vault, ls = [], cid = nil, worker = w, errors = ["write size", write.error])
+                        answers <<- Answer(cid = nil, worker = w, errors = ["write size", write.error])
                 else:
-                    answers <<- Answer(vault_put = vault, ls = [], cid = nil, worker = w, errors = ["calculate size", result.error])
+                    answers <<- Answer(cid = nil, worker = w, errors = ["calculate size", result.error])
 
     <- answers
 
