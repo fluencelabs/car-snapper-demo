@@ -42,10 +42,9 @@ pub fn ls_vault() -> Vec<String> {
 
 #[marine]
 pub fn vault_dir() -> String {
-    let worker_id = get_call_parameters().worker_id;
     let particle_id = get_call_parameters().particle.id;
     let particle_token = get_call_parameters().particle.token;
-    let vault = Path::new("/tmp").join("vault").join(worker_id).join(format!("{particle_id}-{particle_token}"));
+    let vault = Path::new("/tmp").join("vault").join(format!("{particle_id}-{particle_token}"));
 
     vault.to_string_lossy().to_string()
 }
@@ -102,4 +101,11 @@ pub fn file_size(file_path: String) -> SizeResult {
             error: err.to_string(),
         },
     }
+}
+
+// Look for the real directory of the particle vault mapping in the module config
+// For local testing, the mapping happens in Config.toml
+#[allow(dead_code)]
+fn get_host_vault_path() -> Option<String> {
+    std::env::var("/tmp/vault").ok()
 }

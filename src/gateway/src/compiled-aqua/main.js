@@ -48,9 +48,9 @@ export const showSubnet_script = `
                      )
                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreicqa2rzbgccdx5ymxv7gag2hbtytmdz52bbevnetimnwadbekxp7e") %MyDeployment_obj_map)
+                    (ap ("definition" "bafkreiaguifeta7g4tjmrb5uhrgcgf5oy3ybpo5mqepzwq2tluoxybtmv4") %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-09T14:58:05.222Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-09T15:10:04.869Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -465,9 +465,9 @@ export const computeSizePersist_script = `
                      )
                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreicqa2rzbgccdx5ymxv7gag2hbtytmdz52bbevnetimnwadbekxp7e") %MyDeployment_obj_map)
+                    (ap ("definition" "bafkreiaguifeta7g4tjmrb5uhrgcgf5oy3ybpo5mqepzwq2tluoxybtmv4") %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-09T14:58:05.222Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-09T15:10:04.869Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -606,10 +606,13 @@ export const computeSizePersist_script = `
                               (seq
                                (seq
                                 (seq
-                                 (ap ("cid" #$option-inline-1-0) %Answer_obj_map)
-                                 (ap ("errors" []) %Answer_obj_map)
+                                 (seq
+                                  (ap ("cid" #$option-inline-1-0) %Answer_obj_map)
+                                  (ap ("errors" []) %Answer_obj_map)
+                                 )
+                                 (ap ("ls" ret-1) %Answer_obj_map)
                                 )
-                                (ap ("ls" ret-1) %Answer_obj_map)
+                                (ap ("vault_put" ret-0) %Answer_obj_map)
                                )
                                (ap ("worker" w-0) %Answer_obj_map)
                               )
@@ -654,10 +657,13 @@ export const computeSizePersist_script = `
                                 (seq
                                  (seq
                                   (seq
-                                   (ap ("cid" []) %Answer_obj-0_map)
-                                   (ap ("errors" #$array-inline-1-0) %Answer_obj-0_map)
+                                   (seq
+                                    (ap ("cid" []) %Answer_obj-0_map)
+                                    (ap ("errors" #$array-inline-1-0) %Answer_obj-0_map)
+                                   )
+                                   (ap ("ls" ret-1) %Answer_obj-0_map)
                                   )
-                                  (ap ("ls" ret-1) %Answer_obj-0_map)
+                                  (ap ("vault_put" ret-0) %Answer_obj-0_map)
                                  )
                                  (ap ("worker" w-0) %Answer_obj-0_map)
                                 )
@@ -750,10 +756,13 @@ export const computeSizePersist_script = `
                           (seq
                            (seq
                             (seq
-                             (ap ("cid" []) %Answer_obj-1_map)
-                             (ap ("errors" #$array-inline-2-0) %Answer_obj-1_map)
+                             (seq
+                              (ap ("cid" []) %Answer_obj-1_map)
+                              (ap ("errors" #$array-inline-2-0) %Answer_obj-1_map)
+                             )
+                             (ap ("ls" ret-1) %Answer_obj-1_map)
                             )
-                            (ap ("ls" ret-1) %Answer_obj-1_map)
+                            (ap ("vault_put" ret-0) %Answer_obj-1_map)
                            )
                            (ap ("worker" w-0) %Answer_obj-1_map)
                           )
@@ -891,13 +900,6 @@ export function computeSizePersist(...args) {
                     "type": {
                         "name": "Answer",
                         "fields": {
-                            "cid": {
-                                "type": {
-                                    "name": "string",
-                                    "tag": "scalar"
-                                },
-                                "tag": "option"
-                            },
                             "errors": {
                                 "type": {
                                     "name": "string",
@@ -905,12 +907,12 @@ export function computeSizePersist(...args) {
                                 },
                                 "tag": "array"
                             },
-                            "ls": {
+                            "cid": {
                                 "type": {
                                     "name": "string",
                                     "tag": "scalar"
                                 },
-                                "tag": "array"
+                                "tag": "option"
                             },
                             "worker": {
                                 "name": "Worker",
@@ -932,6 +934,17 @@ export function computeSizePersist(...args) {
                                     }
                                 },
                                 "tag": "struct"
+                            },
+                            "ls": {
+                                "type": {
+                                    "name": "string",
+                                    "tag": "scalar"
+                                },
+                                "tag": "array"
+                            },
+                            "vault_put": {
+                                "name": "string",
+                                "tag": "scalar"
                             }
                         },
                         "tag": "struct"
