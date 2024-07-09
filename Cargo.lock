@@ -1966,6 +1966,7 @@ dependencies = [
  "marine-rs-sdk",
  "marine-rs-sdk-test",
  "multicodec",
+ "rand",
 ]
 
 [[package]]

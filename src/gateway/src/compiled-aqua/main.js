@@ -19,72 +19,6 @@ import {
 
 
 // Functions
-export const helloWorldRemote_script = `
-(xor
- (seq
-  (seq
-   (seq
-    (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
-    (call %init_peer_id% ("getDataSrv" "name") [] -name-arg-)
-   )
-   (xor
-    (seq
-     (seq
-      (call -relay- ("op" "concat_strings") ["Hello, " -name-arg-] ret)
-      (call -relay- ("op" "concat_strings") [ret "! From "] ret-0)
-     )
-     (call -relay- ("op" "concat_strings") [ret-0 -relay-] ret-1)
-    )
-    (fail :error:)
-   )
-  )
-  (call %init_peer_id% ("callbackSrv" "response") [ret-1])
- )
- (call %init_peer_id% ("errorHandlingSrv" "error") [:error: 0])
-)
-`;
-
-
-export function helloWorldRemote(...args) {
-    return callFunction$$(
-        args,
-        {
-    "functionName": "helloWorldRemote",
-    "arrow": {
-        "domain": {
-            "fields": {
-                "name": {
-                    "name": "string",
-                    "tag": "scalar"
-                }
-            },
-            "tag": "labeledProduct"
-        },
-        "codomain": {
-            "items": [
-                {
-                    "name": "string",
-                    "tag": "scalar"
-                }
-            ],
-            "tag": "unlabeledProduct"
-        },
-        "tag": "arrow"
-    },
-    "names": {
-        "relay": "-relay-",
-        "getDataSrv": "getDataSrv",
-        "callbackSrv": "callbackSrv",
-        "responseSrv": "callbackSrv",
-        "responseFnName": "response",
-        "errorHandlingSrv": "errorHandlingSrv",
-        "errorFnName": "error"
-    }
-},
-        helloWorldRemote_script
-    );
-}
-
 export const showSubnet_script = `
 (xor
  (new $services
@@ -97,10 +31,41 @@ export const showSubnet_script = `
         (seq
          (seq
           (seq
-           (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
+           (seq
+            (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
+            (new $option-inline
+             (seq
+              (xor
+               (seq
+                (new %MyDeployment_obj_map
+                 (seq
+                  (seq
+                   (seq
+                    (seq
+                     (seq
+                      (ap ("chainNetworkId" 31337) %MyDeployment_obj_map)
+                      (ap ("dealId" "ce85503de9399d4deca3c0b2bb3e9e7cfcbf9c6b") %MyDeployment_obj_map)
+                     )
+                     (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
+                    )
+                    (ap ("definition" "bafkreibrvyssizsrzzwdib5d54yq3s7hl5bjplureglimybuilondl4sce") %MyDeployment_obj_map)
+                   )
+                   (ap ("timestamp" "2024-07-09T14:39:01.704Z") %MyDeployment_obj_map)
+                  )
+                  (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
+                 )
+                )
+                (ap MyDeployment_obj $option-inline)
+               )
+               (null)
+              )
+              (canon %init_peer_id% $option-inline  #$option-inline-0)
+             )
+            )
+           )
            (new %Deals_obj_map
             (seq
-             (ap ("myDeployment" []) %Deals_obj_map)
+             (ap ("myDeployment" #$option-inline-0) %Deals_obj_map)
              (canon %init_peer_id% %Deals_obj_map  Deals_obj)
             )
            )
@@ -260,28 +225,28 @@ export const showSubnet_script = `
                       )
                      )
                      (par
-                      (new $option-inline
-                       (seq
-                        (xor
-                         (seq
-                          (canon w-0.$.worker_id.[0] $services_aliases  #$push-to-stream-103)
-                          (ap #$push-to-stream-103 $option-inline)
-                         )
-                         (null)
-                        )
-                        (canon w-0.$.worker_id.[0] $option-inline  #$option-inline-0)
-                       )
-                      )
                       (new $option-inline-1
                        (seq
                         (xor
                          (seq
-                          (canon w-0.$.worker_id.[0] $spells_aliases  #$push-to-stream-108)
-                          (ap #$push-to-stream-108 $option-inline-1)
+                          (canon w-0.$.worker_id.[0] $services_aliases  #$push-to-stream-118)
+                          (ap #$push-to-stream-118 $option-inline-1)
                          )
                          (null)
                         )
                         (canon w-0.$.worker_id.[0] $option-inline-1  #$option-inline-1-0)
+                       )
+                      )
+                      (new $option-inline-2
+                       (seq
+                        (xor
+                         (seq
+                          (canon w-0.$.worker_id.[0] $spells_aliases  #$push-to-stream-123)
+                          (ap #$push-to-stream-123 $option-inline-2)
+                         )
+                         (null)
+                        )
+                        (canon w-0.$.worker_id.[0] $option-inline-2  #$option-inline-2-0)
                        )
                       )
                      )
@@ -292,9 +257,9 @@ export const showSubnet_script = `
                        (seq
                         (seq
                          (ap ("host_id" w-0.$.host_id) %WorkerServices_obj_map)
-                         (ap ("services" #$option-inline-0) %WorkerServices_obj_map)
+                         (ap ("services" #$option-inline-1-0) %WorkerServices_obj_map)
                         )
-                        (ap ("spells" #$option-inline-1-0) %WorkerServices_obj_map)
+                        (ap ("spells" #$option-inline-2-0) %WorkerServices_obj_map)
                        )
                        (ap ("worker_id" w-0.$.worker_id) %WorkerServices_obj_map)
                       )
@@ -471,91 +436,7 @@ export function showSubnet(...args) {
     );
 }
 
-export const getInfo_script = `
-(xor
- (seq
-  (seq
-   (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
-   (xor
-    (call -relay- ("peer" "identify") [] ret)
-    (fail :error:)
-   )
-  )
-  (call %init_peer_id% ("callbackSrv" "response") [ret -relay-])
- )
- (call %init_peer_id% ("errorHandlingSrv" "error") [:error: 0])
-)
-`;
-
-
-export function getInfo(...args) {
-    return callFunction$$(
-        args,
-        {
-    "functionName": "getInfo",
-    "arrow": {
-        "domain": {
-            "fields": {},
-            "tag": "labeledProduct"
-        },
-        "codomain": {
-            "items": [
-                {
-                    "name": "Info",
-                    "fields": {
-                        "node_version": {
-                            "name": "string",
-                            "tag": "scalar"
-                        },
-                        "spell_version": {
-                            "name": "string",
-                            "tag": "scalar"
-                        },
-                        "external_addresses": {
-                            "type": {
-                                "name": "string",
-                                "tag": "scalar"
-                            },
-                            "tag": "array"
-                        },
-                        "allowed_binaries": {
-                            "type": {
-                                "name": "string",
-                                "tag": "scalar"
-                            },
-                            "tag": "array"
-                        },
-                        "air_version": {
-                            "name": "string",
-                            "tag": "scalar"
-                        }
-                    },
-                    "tag": "struct"
-                },
-                {
-                    "name": "string",
-                    "tag": "scalar"
-                }
-            ],
-            "tag": "unlabeledProduct"
-        },
-        "tag": "arrow"
-    },
-    "names": {
-        "relay": "-relay-",
-        "getDataSrv": "getDataSrv",
-        "callbackSrv": "callbackSrv",
-        "responseSrv": "callbackSrv",
-        "responseFnName": "response",
-        "errorHandlingSrv": "errorHandlingSrv",
-        "errorFnName": "error"
-    }
-},
-        getInfo_script
-    );
-}
-
-export const runDeployedServices_script = `
+export const computeSizePersist_script = `
 (xor
  (new $answers
   (seq
@@ -567,10 +448,41 @@ export const runDeployedServices_script = `
         (seq
          (seq
           (seq
-           (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
+           (seq
+            (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
+            (new $option-inline
+             (seq
+              (xor
+               (seq
+                (new %MyDeployment_obj_map
+                 (seq
+                  (seq
+                   (seq
+                    (seq
+                     (seq
+                      (ap ("chainNetworkId" 31337) %MyDeployment_obj_map)
+                      (ap ("dealId" "ce85503de9399d4deca3c0b2bb3e9e7cfcbf9c6b") %MyDeployment_obj_map)
+                     )
+                     (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
+                    )
+                    (ap ("definition" "bafkreibrvyssizsrzzwdib5d54yq3s7hl5bjplureglimybuilondl4sce") %MyDeployment_obj_map)
+                   )
+                   (ap ("timestamp" "2024-07-09T14:39:01.704Z") %MyDeployment_obj_map)
+                  )
+                  (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
+                 )
+                )
+                (ap MyDeployment_obj $option-inline)
+               )
+               (null)
+              )
+              (canon %init_peer_id% $option-inline  #$option-inline-0)
+             )
+            )
+           )
            (new %Deals_obj_map
             (seq
-             (ap ("myDeployment" []) %Deals_obj_map)
+             (ap ("myDeployment" #$option-inline-0) %Deals_obj_map)
              (canon %init_peer_id% %Deals_obj_map  Deals_obj)
             )
            )
@@ -586,27 +498,48 @@ export const runDeployedServices_script = `
        )
        (new -if-error-
         (xor
-         (match ret.$.success false
-          (seq
-           (new $array-inline
-            (seq
+         (seq
+          (match ret.$.success false
+           (seq
+            (new $array-inline
              (seq
-              (ap "Failed to resolve subnet: " $array-inline)
-              (ap ret.$.error $array-inline)
+              (seq
+               (ap "Failed to resolve subnet: " $array-inline)
+               (ap ret.$.error $array-inline)
+              )
+              (canon %init_peer_id% $array-inline  #$array-inline-0)
              )
-             (canon %init_peer_id% $array-inline  #$array-inline-0)
             )
+            (call %init_peer_id% ("run-console" "print") [#$array-inline-0])
            )
-           (call %init_peer_id% ("run-console" "print") [#$array-inline-0])
+          )
+          (new $-hop-
+           (new #$-hopc-
+            (canon -relay- $-hop-  #$-hopc-)
+           )
           )
          )
          (seq
-          (ap :error: -if-error-)
-          (xor
-           (match :error:.$.error_code 10001
-            (null)
+          (seq
+           (ap :error: -if-error-)
+           (xor
+            (seq
+             (match :error:.$.error_code 10001
+              (null)
+             )
+             (new $-hop-
+              (new #$-hopc-
+               (canon -relay- $-hop-  #$-hopc-)
+              )
+             )
+            )
+            (fail -if-error-)
            )
-           (fail -if-error-)
+          )
+          (new $-hop-
+           (new #$-hopc-
+            (canon -relay- $-hop-  #$-hopc-)
+           )
           )
          )
         )
@@ -614,121 +547,301 @@ export const runDeployedServices_script = `
       )
       (fold ret.$.workers w-0
        (seq
-        (new -if-else-error-
-         (new -else-error-
-          (new -if-error-
+        (new -if-error-
+         (xor
+          (mismatch w-0.$.worker_id []
            (xor
-            (match w-0.$.worker_id []
-             (seq
-              (new %Answer_obj_map
-               (seq
-                (seq
-                 (ap ("answer" []) %Answer_obj_map)
-                 (ap ("worker" w-0) %Answer_obj_map)
-                )
-                (canon %init_peer_id% %Answer_obj_map  Answer_obj)
-               )
-              )
-              (ap Answer_obj $answers)
-             )
-            )
             (seq
-             (ap :error: -if-error-)
-             (xor
-              (match :error:.$.error_code 10001
-               (xor
-                (seq
-                 (seq
+             (seq
+              (seq
+               (seq
+                (new $-hop-
+                 (new #$-hopc-
+                  (canon -relay- $-hop-  #$-hopc-)
+                 )
+                )
+                (new $-hop-
+                 (new #$-hopc-
+                  (canon w-0.$.host_id $-hop-  #$-hopc-)
+                 )
+                )
+               )
+               (call w-0.$.worker_id.[0] ("vault" "put") ["qwerty"] ret-0)
+              )
+              (call w-0.$.worker_id.[0] ("myService" "file_size") [ret-0] ret-1)
+             )
+             (new -if-else-error-
+              (new -else-error-
+               (new -if-error-
+                (xor
+                 (match ret-1.$.success true
                   (seq
+                   (call w-0.$.worker_id.[0] ("myService" "write_file_size") [ret-1.$.size] ret-2)
+                   (new -if-else-error-
+                    (new -else-error-
+                     (new -if-error-
+                      (xor
+                       (seq
+                        (seq
+                         (match ret-2.$.success true
+                          (seq
+                           (seq
+                            (seq
+                             (call w-0.$.worker_id.[0] ("myService" "pack") [ret-2.$.path ret-0 "qwerty_size"] ret-3)
+                             (new $option-inline-1
+                              (seq
+                               (xor
+                                (ap ret-3 $option-inline-1)
+                                (null)
+                               )
+                               (canon w-0.$.worker_id.[0] $option-inline-1  #$option-inline-1-0)
+                              )
+                             )
+                            )
+                            (new %Answer_obj_map
+                             (seq
+                              (seq
+                               (seq
+                                (ap ("cid" #$option-inline-1-0) %Answer_obj_map)
+                                (ap ("error" []) %Answer_obj_map)
+                               )
+                               (ap ("worker" w-0) %Answer_obj_map)
+                              )
+                              (canon w-0.$.worker_id.[0] %Answer_obj_map  Answer_obj)
+                             )
+                            )
+                           )
+                           (ap Answer_obj $answers)
+                          )
+                         )
+                         (new $-hop-
+                          (new #$-hopc-
+                           (canon w-0.$.host_id $-hop-  #$-hopc-)
+                          )
+                         )
+                        )
+                        (new $-hop-
+                         (new #$-hopc-
+                          (canon -relay- $-hop-  #$-hopc-)
+                         )
+                        )
+                       )
+                       (seq
+                        (ap :error: -if-error-)
+                        (xor
+                         (seq
+                          (seq
+                           (match :error:.$.error_code 10001
+                            (seq
+                             (seq
+                              (new $option-inline-2
+                               (seq
+                                (xor
+                                 (ap ret-2.$.error $option-inline-2)
+                                 (null)
+                                )
+                                (canon w-0.$.worker_id.[0] $option-inline-2  #$option-inline-2-0)
+                               )
+                              )
+                              (new %Answer_obj-0_map
+                               (seq
+                                (seq
+                                 (seq
+                                  (ap ("cid" []) %Answer_obj-0_map)
+                                  (ap ("error" #$option-inline-2-0) %Answer_obj-0_map)
+                                 )
+                                 (ap ("worker" w-0) %Answer_obj-0_map)
+                                )
+                                (canon w-0.$.worker_id.[0] %Answer_obj-0_map  Answer_obj-0)
+                               )
+                              )
+                             )
+                             (ap Answer_obj-0 $answers)
+                            )
+                           )
+                           (new $-hop-
+                            (new #$-hopc-
+                             (canon w-0.$.host_id $-hop-  #$-hopc-)
+                            )
+                           )
+                          )
+                          (new $-hop-
+                           (new #$-hopc-
+                            (canon -relay- $-hop-  #$-hopc-)
+                           )
+                          )
+                         )
+                         (seq
+                          (seq
+                           (seq
+                            (seq
+                             (ap :error: -else-error-)
+                             (xor
+                              (seq
+                               (match :error:.$.error_code 10001
+                                (ap -if-error- -if-else-error-)
+                               )
+                               (new $-hop-
+                                (new #$-hopc-
+                                 (canon w-0.$.host_id $-hop-  #$-hopc-)
+                                )
+                               )
+                              )
+                              (seq
+                               (ap -else-error- -if-else-error-)
+                               (new $-hop-
+                                (new #$-hopc-
+                                 (canon w-0.$.host_id $-hop-  #$-hopc-)
+                                )
+                               )
+                              )
+                             )
+                            )
+                            (fail -if-else-error-)
+                           )
+                           (new $-hop-
+                            (new #$-hopc-
+                             (canon w-0.$.host_id $-hop-  #$-hopc-)
+                            )
+                           )
+                          )
+                          (new $-hop-
+                           (new #$-hopc-
+                            (canon -relay- $-hop-  #$-hopc-)
+                           )
+                          )
+                         )
+                        )
+                       )
+                      )
+                     )
+                    )
+                   )
+                  )
+                 )
+                 (seq
+                  (ap :error: -if-error-)
+                  (xor
+                   (seq
+                    (seq
+                     (match :error:.$.error_code 10001
+                      (seq
+                       (seq
+                        (new $option-inline-3
+                         (seq
+                          (xor
+                           (ap ret-1.$.error $option-inline-3)
+                           (null)
+                          )
+                          (canon w-0.$.worker_id.[0] $option-inline-3  #$option-inline-3-0)
+                         )
+                        )
+                        (new %Answer_obj-1_map
+                         (seq
+                          (seq
+                           (seq
+                            (ap ("cid" []) %Answer_obj-1_map)
+                            (ap ("error" #$option-inline-3-0) %Answer_obj-1_map)
+                           )
+                           (ap ("worker" w-0) %Answer_obj-1_map)
+                          )
+                          (canon w-0.$.worker_id.[0] %Answer_obj-1_map  Answer_obj-1)
+                         )
+                        )
+                       )
+                       (ap Answer_obj-1 $answers)
+                      )
+                     )
+                     (new $-hop-
+                      (new #$-hopc-
+                       (canon w-0.$.host_id $-hop-  #$-hopc-)
+                      )
+                     )
+                    )
+                    (new $-hop-
+                     (new #$-hopc-
+                      (canon -relay- $-hop-  #$-hopc-)
+                     )
+                    )
+                   )
                    (seq
                     (seq
                      (seq
                       (seq
-                       (new $-hop-
-                        (new #$-hopc-
-                         (canon -relay- $-hop-  #$-hopc-)
-                        )
-                       )
-                       (new $-hop-
-                        (new #$-hopc-
-                         (canon w-0.$.host_id $-hop-  #$-hopc-)
-                        )
-                       )
-                      )
-                      (call w-0.$.worker_id.[0] ("myService" "greeting") ["fluence"] ret-0)
-                     )
-                     (new $option-inline
-                      (seq
+                       (ap :error: -else-error-)
                        (xor
-                        (ap ret-0 $option-inline)
-                        (null)
+                        (seq
+                         (match :error:.$.error_code 10001
+                          (ap -if-error- -if-else-error-)
+                         )
+                         (new $-hop-
+                          (new #$-hopc-
+                           (canon w-0.$.host_id $-hop-  #$-hopc-)
+                          )
+                         )
+                        )
+                        (seq
+                         (ap -else-error- -if-else-error-)
+                         (new $-hop-
+                          (new #$-hopc-
+                           (canon w-0.$.host_id $-hop-  #$-hopc-)
+                          )
+                         )
+                        )
                        )
-                       (canon w-0.$.worker_id.[0] $option-inline  #$option-inline-0)
+                      )
+                      (fail -if-else-error-)
+                     )
+                     (new $-hop-
+                      (new #$-hopc-
+                       (canon w-0.$.host_id $-hop-  #$-hopc-)
                       )
                      )
                     )
-                    (new %Answer_obj-0_map
-                     (seq
-                      (seq
-                       (ap ("answer" #$option-inline-0) %Answer_obj-0_map)
-                       (ap ("worker" w-0) %Answer_obj-0_map)
-                      )
-                      (canon w-0.$.worker_id.[0] %Answer_obj-0_map  Answer_obj-0)
+                    (new $-hop-
+                     (new #$-hopc-
+                      (canon -relay- $-hop-  #$-hopc-)
                      )
                     )
                    )
-                   (ap Answer_obj-0 $answers)
-                  )
-                  (new $-hop-
-                   (new #$-hopc-
-                    (canon w-0.$.host_id $-hop-  #$-hopc-)
-                   )
                   )
                  )
-                 (new $-hop-
-                  (new #$-hopc-
-                   (canon -relay- $-hop-  #$-hopc-)
-                  )
-                 )
-                )
-                (seq
-                 (seq
-                  (seq
-                   (new $-hop-
-                    (new #$-hopc-
-                     (canon w-0.$.host_id $-hop-  #$-hopc-)
-                    )
-                   )
-                   (new $-hop-
-                    (new #$-hopc-
-                     (canon -relay- $-hop-  #$-hopc-)
-                    )
-                   )
-                  )
-                  (new $-hop-
-                   (new #$-hopc-
-                    (canon %init_peer_id% $-hop-  #$-hopc-)
-                   )
-                  )
-                 )
-                 (fail :error:)
                 )
                )
-              )
-              (seq
-               (seq
-                (ap :error: -else-error-)
-                (xor
-                 (match :error:.$.error_code 10001
-                  (ap -if-error- -if-else-error-)
-                 )
-                 (ap -else-error- -if-else-error-)
-                )
-               )
-               (fail -if-else-error-)
               )
              )
             )
+            (seq
+             (seq
+              (seq
+               (new $-hop-
+                (new #$-hopc-
+                 (canon w-0.$.host_id $-hop-  #$-hopc-)
+                )
+               )
+               (new $-hop-
+                (new #$-hopc-
+                 (canon -relay- $-hop-  #$-hopc-)
+                )
+               )
+              )
+              (new $-hop-
+               (new #$-hopc-
+                (canon %init_peer_id% $-hop-  #$-hopc-)
+               )
+              )
+             )
+             (fail :error:)
+            )
+           )
+          )
+          (seq
+           (ap :error: -if-error-)
+           (xor
+            (match :error:.$.error_code 10002
+             (null)
+            )
+            (fail -if-error-)
            )
           )
          )
@@ -750,11 +863,11 @@ export const runDeployedServices_script = `
 `;
 
 
-export function runDeployedServices(...args) {
+export function computeSizePersist(...args) {
     return callFunction$$(
         args,
         {
-    "functionName": "runDeployedServices",
+    "functionName": "computeSizePersist",
     "arrow": {
         "domain": {
             "fields": {},
@@ -766,7 +879,14 @@ export function runDeployedServices(...args) {
                     "type": {
                         "name": "Answer",
                         "fields": {
-                            "answer": {
+                            "cid": {
+                                "type": {
+                                    "name": "string",
+                                    "tag": "scalar"
+                                },
+                                "tag": "option"
+                            },
+                            "error": {
                                 "type": {
                                     "name": "string",
                                     "tag": "scalar"
@@ -814,202 +934,6 @@ export function runDeployedServices(...args) {
         "errorFnName": "error"
     }
 },
-        runDeployedServices_script
-    );
-}
-
-export const helloWorld_script = `
-(xor
- (seq
-  (seq
-   (seq
-    (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
-    (call %init_peer_id% ("getDataSrv" "name") [] -name-arg-)
-   )
-   (call %init_peer_id% ("op" "concat_strings") ["Hello, " -name-arg-] ret)
-  )
-  (call %init_peer_id% ("callbackSrv" "response") [ret])
- )
- (call %init_peer_id% ("errorHandlingSrv" "error") [:error: 0])
-)
-`;
-
-
-export function helloWorld(...args) {
-    return callFunction$$(
-        args,
-        {
-    "functionName": "helloWorld",
-    "arrow": {
-        "domain": {
-            "fields": {
-                "name": {
-                    "name": "string",
-                    "tag": "scalar"
-                }
-            },
-            "tag": "labeledProduct"
-        },
-        "codomain": {
-            "items": [
-                {
-                    "name": "string",
-                    "tag": "scalar"
-                }
-            ],
-            "tag": "unlabeledProduct"
-        },
-        "tag": "arrow"
-    },
-    "names": {
-        "relay": "-relay-",
-        "getDataSrv": "getDataSrv",
-        "callbackSrv": "callbackSrv",
-        "responseSrv": "callbackSrv",
-        "responseFnName": "response",
-        "errorHandlingSrv": "errorHandlingSrv",
-        "errorFnName": "error"
-    }
-},
-        helloWorld_script
-    );
-}
-
-export const getInfos_script = `
-(xor
- (new $infos
-  (seq
-   (seq
-    (seq
-     (seq
-      (seq
-       (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
-       (call %init_peer_id% ("getDataSrv" "peers") [] -peers-arg-)
-      )
-      (fold -peers-arg- p-0
-       (seq
-        (xor
-         (seq
-          (seq
-           (seq
-            (new $-hop-
-             (new #$-hopc-
-              (canon -relay- $-hop-  #$-hopc-)
-             )
-            )
-            (call p-0 ("peer" "identify") [] ret)
-           )
-           (ap ret $infos)
-          )
-          (new $-hop-
-           (new #$-hopc-
-            (canon -relay- $-hop-  #$-hopc-)
-           )
-          )
-         )
-         (seq
-          (seq
-           (new $-hop-
-            (new #$-hopc-
-             (canon -relay- $-hop-  #$-hopc-)
-            )
-           )
-           (new $-hop-
-            (new #$-hopc-
-             (canon %init_peer_id% $-hop-  #$-hopc-)
-            )
-           )
-          )
-          (fail :error:)
-         )
-        )
-        (next p-0)
-       )
-       (null)
-      )
-     )
-     (canon %init_peer_id% $infos  #$-infos-fix-0)
-    )
-    (ap #$-infos-fix-0 -infos-flat-0)
-   )
-   (call %init_peer_id% ("callbackSrv" "response") [-infos-flat-0])
-  )
- )
- (call %init_peer_id% ("errorHandlingSrv" "error") [:error: 0])
-)
-`;
-
-
-export function getInfos(...args) {
-    return callFunction$$(
-        args,
-        {
-    "functionName": "getInfos",
-    "arrow": {
-        "domain": {
-            "fields": {
-                "peers": {
-                    "type": {
-                        "name": "string",
-                        "tag": "scalar"
-                    },
-                    "tag": "array"
-                }
-            },
-            "tag": "labeledProduct"
-        },
-        "codomain": {
-            "items": [
-                {
-                    "type": {
-                        "name": "Info",
-                        "fields": {
-                            "node_version": {
-                                "name": "string",
-                                "tag": "scalar"
-                            },
-                            "spell_version": {
-                                "name": "string",
-                                "tag": "scalar"
-                            },
-                            "external_addresses": {
-                                "type": {
-                                    "name": "string",
-                                    "tag": "scalar"
-                                },
-                                "tag": "array"
-                            },
-                            "allowed_binaries": {
-                                "type": {
-                                    "name": "string",
-                                    "tag": "scalar"
-                                },
-                                "tag": "array"
-                            },
-                            "air_version": {
-                                "name": "string",
-                                "tag": "scalar"
-                            }
-                        },
-                        "tag": "struct"
-                    },
-                    "tag": "array"
-                }
-            ],
-            "tag": "unlabeledProduct"
-        },
-        "tag": "arrow"
-    },
-    "names": {
-        "relay": "-relay-",
-        "getDataSrv": "getDataSrv",
-        "callbackSrv": "callbackSrv",
-        "responseSrv": "callbackSrv",
-        "responseFnName": "response",
-        "errorHandlingSrv": "errorHandlingSrv",
-        "errorFnName": "error"
-    }
-},
-        getInfos_script
+        computeSizePersist_script
     );
 }
