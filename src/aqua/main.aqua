@@ -23,7 +23,8 @@ export computeSizePersist, showSubnet
 data Answer:
     cid: ?CID
     worker: Worker
-    error: ?string
+    errors: []string
+    ls: []string
 
 func computeSizePersist() -> []Answer:
     deals <- Deals.get()
@@ -41,16 +42,17 @@ func computeSizePersist() -> []Answer:
         if w.worker_id != nil:
             on w.worker_id! via w.host_id:
                 vault <- Vault.put("qwerty")
+                ls <- MyService.ls_vault()
                 result <- MyService.file_size(vault)
                 if result.success:
                     write <- MyService.write_file_size(result.size)
                     if write.success:
                         cid <- MyService.pack(write.path, vault, "qwerty_size")
-                        answers <<- Answer(cid = ?[cid], worker = w, error = nil)
+                        answers <<- Answer(ls = ls, cid = ?[cid], worker = w, errors = nil)
                     else:
-                        answers <<- Answer(cid = nil, worker = w, error = ?[write.error])
+                        answers <<- Answer(ls = ls, cid = nil, worker = w, errors = ["write size", write.error])
                 else:
-                    answers <<- Answer(cid = nil, worker = w, error = ?[result.error])
+                    answers <<- Answer(ls = ls, cid = nil, worker = w, errors = ["calculate size", result.error])
 
     <- answers
 

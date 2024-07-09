@@ -48,9 +48,9 @@ export const showSubnet_script = `
                      )
                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreibrvyssizsrzzwdib5d54yq3s7hl5bjplureglimybuilondl4sce") %MyDeployment_obj_map)
+                    (ap ("definition" "bafkreicqa2rzbgccdx5ymxv7gag2hbtytmdz52bbevnetimnwadbekxp7e") %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-09T14:39:01.704Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-09T14:58:05.222Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -465,9 +465,9 @@ export const computeSizePersist_script = `
                      )
                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreibrvyssizsrzzwdib5d54yq3s7hl5bjplureglimybuilondl4sce") %MyDeployment_obj_map)
+                    (ap ("definition" "bafkreicqa2rzbgccdx5ymxv7gag2hbtytmdz52bbevnetimnwadbekxp7e") %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-09T14:39:01.704Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-09T14:58:05.222Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -555,43 +555,46 @@ export const computeSizePersist_script = `
              (seq
               (seq
                (seq
-                (new $-hop-
-                 (new #$-hopc-
-                  (canon -relay- $-hop-  #$-hopc-)
+                (seq
+                 (new $-hop-
+                  (new #$-hopc-
+                   (canon -relay- $-hop-  #$-hopc-)
+                  )
+                 )
+                 (new $-hop-
+                  (new #$-hopc-
+                   (canon w-0.$.host_id $-hop-  #$-hopc-)
+                  )
                  )
                 )
-                (new $-hop-
-                 (new #$-hopc-
-                  (canon w-0.$.host_id $-hop-  #$-hopc-)
-                 )
-                )
+                (call w-0.$.worker_id.[0] ("vault" "put") ["qwerty"] ret-0)
                )
-               (call w-0.$.worker_id.[0] ("vault" "put") ["qwerty"] ret-0)
+               (call w-0.$.worker_id.[0] ("myService" "ls_vault") [] ret-1)
               )
-              (call w-0.$.worker_id.[0] ("myService" "file_size") [ret-0] ret-1)
+              (call w-0.$.worker_id.[0] ("myService" "file_size") [ret-0] ret-2)
              )
              (new -if-else-error-
               (new -else-error-
                (new -if-error-
                 (xor
-                 (match ret-1.$.success true
+                 (match ret-2.$.success true
                   (seq
-                   (call w-0.$.worker_id.[0] ("myService" "write_file_size") [ret-1.$.size] ret-2)
+                   (call w-0.$.worker_id.[0] ("myService" "write_file_size") [ret-2.$.size] ret-3)
                    (new -if-else-error-
                     (new -else-error-
                      (new -if-error-
                       (xor
                        (seq
                         (seq
-                         (match ret-2.$.success true
+                         (match ret-3.$.success true
                           (seq
                            (seq
                             (seq
-                             (call w-0.$.worker_id.[0] ("myService" "pack") [ret-2.$.path ret-0 "qwerty_size"] ret-3)
+                             (call w-0.$.worker_id.[0] ("myService" "pack") [ret-3.$.path ret-0 "qwerty_size"] ret-4)
                              (new $option-inline-1
                               (seq
                                (xor
-                                (ap ret-3 $option-inline-1)
+                                (ap ret-4 $option-inline-1)
                                 (null)
                                )
                                (canon w-0.$.worker_id.[0] $option-inline-1  #$option-inline-1-0)
@@ -602,8 +605,11 @@ export const computeSizePersist_script = `
                              (seq
                               (seq
                                (seq
-                                (ap ("cid" #$option-inline-1-0) %Answer_obj_map)
-                                (ap ("error" []) %Answer_obj_map)
+                                (seq
+                                 (ap ("cid" #$option-inline-1-0) %Answer_obj_map)
+                                 (ap ("errors" []) %Answer_obj_map)
+                                )
+                                (ap ("ls" ret-1) %Answer_obj_map)
                                )
                                (ap ("worker" w-0) %Answer_obj_map)
                               )
@@ -634,21 +640,24 @@ export const computeSizePersist_script = `
                            (match :error:.$.error_code 10001
                             (seq
                              (seq
-                              (new $option-inline-2
+                              (new $array-inline-1
                                (seq
-                                (xor
-                                 (ap ret-2.$.error $option-inline-2)
-                                 (null)
+                                (seq
+                                 (ap "write size" $array-inline-1)
+                                 (ap ret-3.$.error $array-inline-1)
                                 )
-                                (canon w-0.$.worker_id.[0] $option-inline-2  #$option-inline-2-0)
+                                (canon w-0.$.worker_id.[0] $array-inline-1  #$array-inline-1-0)
                                )
                               )
                               (new %Answer_obj-0_map
                                (seq
                                 (seq
                                  (seq
-                                  (ap ("cid" []) %Answer_obj-0_map)
-                                  (ap ("error" #$option-inline-2-0) %Answer_obj-0_map)
+                                  (seq
+                                   (ap ("cid" []) %Answer_obj-0_map)
+                                   (ap ("errors" #$array-inline-1-0) %Answer_obj-0_map)
+                                  )
+                                  (ap ("ls" ret-1) %Answer_obj-0_map)
                                  )
                                  (ap ("worker" w-0) %Answer_obj-0_map)
                                 )
@@ -727,21 +736,24 @@ export const computeSizePersist_script = `
                      (match :error:.$.error_code 10001
                       (seq
                        (seq
-                        (new $option-inline-3
+                        (new $array-inline-2
                          (seq
-                          (xor
-                           (ap ret-1.$.error $option-inline-3)
-                           (null)
+                          (seq
+                           (ap "calculate size" $array-inline-2)
+                           (ap ret-2.$.error $array-inline-2)
                           )
-                          (canon w-0.$.worker_id.[0] $option-inline-3  #$option-inline-3-0)
+                          (canon w-0.$.worker_id.[0] $array-inline-2  #$array-inline-2-0)
                          )
                         )
                         (new %Answer_obj-1_map
                          (seq
                           (seq
                            (seq
-                            (ap ("cid" []) %Answer_obj-1_map)
-                            (ap ("error" #$option-inline-3-0) %Answer_obj-1_map)
+                            (seq
+                             (ap ("cid" []) %Answer_obj-1_map)
+                             (ap ("errors" #$array-inline-2-0) %Answer_obj-1_map)
+                            )
+                            (ap ("ls" ret-1) %Answer_obj-1_map)
                            )
                            (ap ("worker" w-0) %Answer_obj-1_map)
                           )
@@ -886,12 +898,19 @@ export function computeSizePersist(...args) {
                                 },
                                 "tag": "option"
                             },
-                            "error": {
+                            "errors": {
                                 "type": {
                                     "name": "string",
                                     "tag": "scalar"
                                 },
-                                "tag": "option"
+                                "tag": "array"
+                            },
+                            "ls": {
+                                "type": {
+                                    "name": "string",
+                                    "tag": "scalar"
+                                },
+                                "tag": "array"
                             },
                             "worker": {
                                 "name": "Worker",

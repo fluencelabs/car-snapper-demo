@@ -42,8 +42,10 @@ pub fn ls_vault() -> Vec<String> {
 
 #[marine]
 pub fn vault_dir() -> String {
+    let worker_id = get_call_parameters().worker_id;
     let particle_id = get_call_parameters().particle.id;
-    let vault = Path::new("/tmp").join("vault").join(particle_id);
+    let particle_token = get_call_parameters().particle.token;
+    let vault = Path::new("/tmp").join("vault").join(worker_id).join(format!("{particle_id}-{particle_token}"));
 
     vault.to_string_lossy().to_string()
 }
