@@ -549,6 +549,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "curl-effector-imports"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "038a61c600f38d32e553680693f7402528de0a1bf418422ddb8f11a0c97b9fa8"
+dependencies = [
+ "curl-effector-types",
+ "marine-rs-sdk",
+]
+
+[[package]]
+name = "curl-effector-types"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5e54f50b1b170ee7c1de5a1345a66ea2805e0b227fa880eac8dd2b16046f93f6"
+dependencies = [
+ "marine-rs-sdk",
+]
+
+[[package]]
 name = "darling"
 version = "0.20.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1963,6 +1982,7 @@ name = "myService"
 version = "0.1.0"
 dependencies = [
  "blockless-car",
+ "curl-effector-imports",
  "marine-rs-sdk",
  "marine-rs-sdk-test",
  "multicodec",

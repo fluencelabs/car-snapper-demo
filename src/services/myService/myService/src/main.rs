@@ -4,6 +4,8 @@ use marine_rs_sdk::module_manifest;
 use marine_rs_sdk::{get_call_parameters, marine};
 use std::path::Path;
 
+use curl_effector_imports as curl;
+
 module_manifest!();
 
 // use car_
@@ -100,6 +102,29 @@ pub fn file_size(file_path: String) -> SizeResult {
             success: false,
             error: err.to_string(),
         },
+    }
+}
+
+#[marine]
+pub struct UploadResult {
+    pub success: bool,
+    pub error: String,
+}
+
+#[marine]
+fn upload_file(url: String, vault_path: String) -> UploadResult {
+    let particle_id = get_call_parameters().particle.id;
+    let particle_token = get_call_parameters().particle.token;
+
+    let upload_request = curl::CurlRequest {
+        url,
+        headers: vec![],
+    };
+    let result_path = format!("/tmp/vault/{particle_id}-{particle_token}/response");
+    let result = curl::curl_post(upload_request, vault_path, result_path);
+    UploadResult {
+        success: result.success,
+        error: result.error,
     }
 }
 

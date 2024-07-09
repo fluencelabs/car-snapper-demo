@@ -12,6 +12,7 @@ marine-rs-sdk = "0.14.0"
 blockless-car = "0.3.2"
 multicodec = "0.1.0"
 rand = "0.8.5"
+curl-effector-imports = "0.1.1"
 
 [dev-dependencies]
 marine-rs-sdk-test = "0.16.1"

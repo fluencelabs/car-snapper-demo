@@ -1,2 +1,5 @@
 [workspace]
 members = [ "src/services/myService/myService" ]
+
+[workspace.dependencies.curl-effector-imports]
+version = "0.1.1"

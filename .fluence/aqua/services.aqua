@@ -6,6 +6,10 @@ data SizeResult:
   success: bool
   error: string
 
+data UploadResult:
+  success: bool
+  error: string
+
 data WriteResult:
   path: string
   success: bool
@@ -16,5 +20,6 @@ service MyService("myService"):
   ls(dir: string) -> []string
   ls_vault() -> []string
   pack(src: string, dst_dir: string, dst_name: string) -> string
+  upload_file(url: string, vault_path: string) -> UploadResult
   vault_dir() -> string
   write_file_size(size: u32) -> WriteResult
