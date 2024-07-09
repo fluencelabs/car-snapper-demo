@@ -1,17 +1,19 @@
-# Fluence Quickstart Template
+```shell
+git clone git@github.com:fluencelabs/car-snapper-demo.git
 
-## Content
+cd car-snapper-demo
 
-- Default Marine service - `src/services`.
-- Basic aqua functions - `src/aqua`.
-- Fluence HTTP Gateway for proxying Aqua execution - `src/gateway`.
+fluence build
 
-## Usage
+# copy something to /tmp dir of the myService
+cp -r .fluence .fluence/tmp/volumes/services/myService/service/tmp/
 
-```sh
-# You can deploy right away with an example worker that contains an example service
-fluence deploy
+# run myService in MREPL
+fluence service repl myService
 
-# Run the deployed code
-fluence run -f 'runDeployedServices()'
+# inside MREPL, call pack
+call myService pack ["/tmp/.fluence", "/tmp/dot_fluence.car"]
+
+# use ls to explore /tmp
+call myService ls ["/tmp"]
 ```
