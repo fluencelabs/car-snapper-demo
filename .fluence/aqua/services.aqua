@@ -1,0 +1,6 @@
+aqua Services declares *
+
+
+service MyService("myService"):
+  ls(dir: string) -> []string
+  pack(src: string, dst: string) -> string
