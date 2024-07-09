@@ -12,8 +12,14 @@ cp -r .fluence .fluence/tmp/volumes/services/myService/service/tmp/
 fluence service repl myService
 
 # inside MREPL, call pack
-call myService pack ["/tmp/.fluence", "/tmp/dot_fluence.car"]
+1> call myService pack ["/tmp/.fluence", "/tmp/dot_fluence.car"]
+result: "bafybeicfx2doeilobyt34z7tiw6vkpvufrz7o7zxyew5a64izbgppwzs5i"
+ elapsed time: 32.322791ms
 
-# use ls to explore /tmp
-call myService ls ["/tmp"]
+# inside MREPL, use ls to explore /tmp
+2>call myService ls ["/tmp"]
+result: [
+  "/tmp/module.yaml"
+]
+ elapsed time: 6.766042ms
 ```
