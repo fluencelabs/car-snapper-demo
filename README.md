@@ -37,7 +37,7 @@ fluence local up
 
 fluence deploy
 
-% fluence run -f 'computeSizePersist()'
+% fluence run -f 'sealMyData()'
 Using aqua compiler version: 0.14.10
 Using local blockchain environment
 Connecting to random local relay: /ip4/127.0.0.1/tcp/9991/ws/p2p/12D3KooWFL3ATmeGCXeHzX9YuGa2QPUHzfaUtG21yb6UfC9Cv4jt
@@ -46,30 +46,30 @@ Running computeSizePersist() from /Users/folex/Development/fluencelabs/web3mine/
 
 [
   {
-    "cid": "bafybeie2dnez5ww5w4uw4c5fhh2vosiw5kmrnv3wcgfizuovlin7pycq6a",
+    "cid": "Successfully sent to sealing bafkreihuolbbgoc7ejlz5vflyvmdtkr7lcl3lzlkmamln3ljomkh3f442q",
     "errors": [],
     "worker": {
-      "host_id": "12D3KooWFL3ATmeGCXeHzX9YuGa2QPUHzfaUtG21yb6UfC9Cv4jt",
-      "pat_id": "0x0a0f97dc9cb20d39a486a0fdea52f1939fb907b6c235230dbf72d261f64ae93e",
-      "worker_id": "12D3KooWAiu7kEopMCqTW4qbEWwBiQ3BgPtzBHpx8YoVHiPKN3sh"
+      "host_id": "12D3KooWCxkcSptCL2RzckfXm9gcwaUQATyGcyzetnVcaEWgqgDH",
+      "pat_id": "0x01f250955af4af533b29bb31ae16d94cdac2eeaeb9c086c81c198f6aa2982f11",
+      "worker_id": "12D3KooWBCWUhSvEYC7ho7xkwoQeW9BuMPEFaWkzaMZMgc8hgV3x"
     }
   },
   {
-    "cid": "bafybeibclo4tdq76aibt7ira5jfkzto6kxdb2k5jqx7eaiqsewqhd6wi6i",
+    "cid": "Successfully sent to sealing bafkreihqahiwz4jzitmeke7i7dgjzzp3hmkvbnbh3rwirqfpq2acmugglm",
     "errors": [],
     "worker": {
-      "host_id": "12D3KooWK4epo4rnomCN2P3H8k4bCuUaB4cm8yM3Jb5Yq7EsnMxf",
-      "pat_id": "0x03db8d1e83f491bcab8faf5426a8dd30113a95d6903e7313da74c2a753e81c00",
-      "worker_id": "12D3KooWSqZDrH7CjoMjQPw6kTi3T5uS33fSpgPQ5cFv4mnZsGka"
+      "host_id": "12D3KooWCy2w1gNewVgJ83myAotX3Gg81SQd6BtBZPXfFD2EPr8J",
+      "pat_id": "0x1343de0f7261049695af5d9e0ec26d5204761dbdfb070e87066181b8b186a969",
+      "worker_id": "12D3KooWGKeVnQY8b3YMmKckNz29ae8qgmvMEqBiz7LXJ2SN6xDF"
     }
   },
   {
-    "cid": "bafybeibcjmhiapehjwuyjdzxrhtjl3pfky23lvha5l6u3fcolwgneimhca",
+    "cid": "Successfully sent to sealing bafkreieoq45m2cpsrywizumard5pmdzhejb4ttlkky5veexfummxpuo3pm",
     "errors": [],
     "worker": {
-      "host_id": "12D3KooWStgrf1cSkuMEspzQDPAqGQhVhkS8okiXe9nWTUpDvi2A",
-      "pat_id": "0x0d6dfb5140e341af06dcc725f050c4c01c5d3fe5f9ef5f238a65093d0e86ef0e",
-      "worker_id": "12D3KooWJZbe4p5ngGBvhuBUPfGzmf6DCHQtjNKQ1UV4BexE1FwR"
+      "host_id": "12D3KooWKjVQZxJixLeyAZCcQSmQmzqyh5CHct8o5XWmLknSapdW",
+      "pat_id": "0x1a9c4ba16f695aef6258c19c6bc079730bf40feae2e69f8edf8594fed5af1e42",
+      "worker_id": "12D3KooWSEG6K5UojG3PxfRvFKsVEUFCxGhTXrDovuAPmRu4J7cW"
     }
   }
 ]

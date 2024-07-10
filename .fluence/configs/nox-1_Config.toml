@@ -10,11 +10,11 @@ metrics_timer_resolution = "1 minute"
 enable = [ "aqua-ipfs", "decider" ]
 
   [system_services.decider]
-  decider_period_sec = 30
+  decider_period_sec = 60
   worker_ipfs_multiaddr = "/dns4/ipfs/tcp/5001"
   network_api_endpoint = "http://chain-rpc:8545"
   matcher_address = "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c"
-  wallet_key = "0xe26e5230778b08b6e43d7c122850d0feccfb92ab7ce3698a4b19113761585e54"
+  wallet_key = "0x5bedb1e4113fbf9f46493e332ab4d3bd0767f680eba1b9bd9a2d36e851490d5c"
   start_block = "earliest"
   network_id = 31_337
 
@@ -35,5 +35,5 @@ core_contract_address = "0x0B306BF915C4d645ff596e518fAf3F9669b97016"
 cc_contract_address = "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d"
 market_contract_address = "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c"
 network_id = 31_337
-wallet_key = "0xe26e5230778b08b6e43d7c122850d0feccfb92ab7ce3698a4b19113761585e54"
+wallet_key = "0x5bedb1e4113fbf9f46493e332ab4d3bd0767f680eba1b9bd9a2d36e851490d5c"
 default_priority_fee = 0

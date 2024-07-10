@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=../../schemas/module.json
+version: 1
+
+name: ipfs_effector
+
+effects:
+  binaries:
+    ipfs: /usr/bin/ipfs
+
+cid: bafkreidl5wvds3eo3puwfjygvcjmgytfge3hkli6yumld3z54noahz4ana
+
+rustBindingCrate:
+  name: ipfs-effector-imports
+  version: 0.1.1

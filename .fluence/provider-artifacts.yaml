@@ -10,6 +10,9 @@ offers:
   {
     local:
       {
-        defaultOffer: { id: "0x71aaee2440fef7ce7ebc00a7f5ecddd4aa9cd320c74c73d31a4f6f20d6058944" }
+        defaultOffer:
+          {
+            id: "0x5c249fe6592f74bb0667d4a5af25da82818bd9cc5ac9ccc9877220d4f3c5037e"
+          }
       }
   }

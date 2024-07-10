@@ -1115,6 +1115,25 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5a611371471e98973dbcab4e0ec66c31a10bc356eeb4d54a0e05eac8158fe38c"
 
 [[package]]
+name = "ipfs-effector-imports"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c72e46ab95851060c1986c587e8cdec5a00c55badb2ddee1e161dd42732f7229"
+dependencies = [
+ "ipfs-effector-types",
+ "marine-rs-sdk",
+]
+
+[[package]]
+name = "ipfs-effector-types"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b2d6601e9ce7a3d5ec9ac807207cfefaf547b699500910ad8262b234ad9bd25f"
+dependencies = [
+ "marine-rs-sdk",
+]
+
+[[package]]
 name = "ipnet"
 version = "2.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1983,10 +2002,12 @@ version = "0.1.0"
 dependencies = [
  "blockless-car",
  "curl-effector-imports",
+ "ipfs-effector-imports",
  "marine-rs-sdk",
  "marine-rs-sdk-test",
  "multicodec",
  "rand",
+ "serde_json",
 ]
 
 [[package]]

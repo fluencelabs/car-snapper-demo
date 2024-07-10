@@ -53,7 +53,7 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
   chain-rpc:
-    image: fluencelabs/chain-rpc:0.14.0
+    image: fluencelabs/chain-rpc:0.13.9
     ports:
       - 8545:8545
     volumes:
@@ -69,7 +69,7 @@ services:
       timeout: 10s
       retries: 20
   chain-deploy-script:
-    image: fluencelabs/chain-deploy-script:0.14.0
+    image: fluencelabs/chain-deploy-script:0.13.9
     environment:
       CHAIN_RPC_URL: http://chain-rpc:8545
       MAX_FAILED_RATIO: "9999"
@@ -104,20 +104,20 @@ services:
       ETHEREUM_REORG_THRESHOLD: 1
       ETHEREUM_ANCESTOR_COUNT: 1
   subgraph-deploy-script:
-    image: fluencelabs/subgraph-deploy-script:0.14.0
+    image: fluencelabs/subgraph-deploy-script:0.13.9
     environment:
       GRAPHNODE_ADMIN_URL_LOCAL: http://graph-node:8020
       IPFS_URL: http://ipfs:5001
     depends_on:
       - graph-node
   nox-0:
-    image: fluencelabs/nox:0.25.0
+    image: fluencelabs/nox:0.23.6
     ports:
       - 7771:7771
       - 9991:9991
     environment:
       WASM_LOG: debug
-      FLUENCE_MAX_SPELL_PARTICLE_TTL: 30s
+      FLUENCE_MAX_SPELL_PARTICLE_TTL: 60s
       FLUENCE_ROOT_KEY_PAIR__PATH: /run/secrets/nox-0
       RUST_LOG: info,chain_connector=debug,run-console=trace,aquamarine::log=debug,network=trace,worker_inactive=trace,expired=info,spell=debug,ipfs_effector=debug,ipfs_pure=debug,spell_event_bus=trace,system_services=debug,particle_reap=debug,aquamarine::actor=debug,aquamarine::aqua_runtime=off,aquamarine=warn,chain_listener=debug,chain-connector=debug,execution=trace
     command:
@@ -147,13 +147,13 @@ services:
       timeout: 2s
       retries: 10
   nox-1:
-    image: fluencelabs/nox:0.25.0
+    image: fluencelabs/nox:0.23.6
     ports:
       - 7772:7772
       - 9992:9992
     environment:
       WASM_LOG: debug
-      FLUENCE_MAX_SPELL_PARTICLE_TTL: 30s
+      FLUENCE_MAX_SPELL_PARTICLE_TTL: 60s
       FLUENCE_ROOT_KEY_PAIR__PATH: /run/secrets/nox-1
       RUST_LOG: info,chain_connector=debug,run-console=trace,aquamarine::log=debug,network=trace,worker_inactive=trace,expired=info,spell=debug,ipfs_effector=debug,ipfs_pure=debug,spell_event_bus=trace,system_services=debug,particle_reap=debug,aquamarine::actor=debug,aquamarine::aqua_runtime=off,aquamarine=warn,chain_listener=debug,chain-connector=debug,execution=trace
     command:
@@ -183,13 +183,13 @@ services:
       timeout: 2s
       retries: 10
   nox-2:
-    image: fluencelabs/nox:0.25.0
+    image: fluencelabs/nox:0.23.6
     ports:
       - 7773:7773
       - 9993:9993
     environment:
       WASM_LOG: debug
-      FLUENCE_MAX_SPELL_PARTICLE_TTL: 30s
+      FLUENCE_MAX_SPELL_PARTICLE_TTL: 60s
       FLUENCE_ROOT_KEY_PAIR__PATH: /run/secrets/nox-2
       RUST_LOG: info,chain_connector=debug,run-console=trace,aquamarine::log=debug,network=trace,worker_inactive=trace,expired=info,spell=debug,ipfs_effector=debug,ipfs_pure=debug,spell_event_bus=trace,system_services=debug,particle_reap=debug,aquamarine::actor=debug,aquamarine::aqua_runtime=off,aquamarine=warn,chain_listener=debug,chain-connector=debug,execution=trace
     command:

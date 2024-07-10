@@ -1,6 +1,11 @@
 aqua Services declares *
 
 
+data IpfsAddResult:
+  success: bool
+  error: string
+  hash: string
+
 data SizeResult:
   size: u32
   success: bool
@@ -19,7 +24,8 @@ service MyService("myService"):
   file_size(file_path: string) -> SizeResult
   ls(dir: string) -> []string
   ls_vault() -> []string
-  pack(src: string, dst_dir: string, dst_name: string) -> string
-  upload_file(url: string, vault_path: string) -> UploadResult
+  pack(src: string, dst_name: string) -> []u8
+  seal_data(cid_bytes: []u8, cid: string, file_size: u32, snapper_url: string) -> UploadResult
+  upload_ipfs(file_path: string) -> IpfsAddResult
   vault_dir() -> string
   write_file_size(size: u32) -> WriteResult

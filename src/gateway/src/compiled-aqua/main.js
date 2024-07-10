@@ -48,9 +48,9 @@ export const showSubnet_script = `
                      )
                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreiaguifeta7g4tjmrb5uhrgcgf5oy3ybpo5mqepzwq2tluoxybtmv4") %MyDeployment_obj_map)
+                    (ap ("definition" "bafkreigehznblahm4w6wgjdp3s7yxqxdbkqi4cldbrqf5lv4fljssoo6sq") %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-09T15:10:04.869Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-10T01:28:32.959Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -59,13 +59,13 @@ export const showSubnet_script = `
                )
                (null)
               )
-              (canon %init_peer_id% $option-inline  #$option-inline-0)
+              (canon %init_peer_id% $option-inline  #option-inline-0)
              )
             )
            )
            (new %Deals_obj_map
             (seq
-             (ap ("myDeployment" #$option-inline-0) %Deals_obj_map)
+             (ap ("myDeployment" #option-inline-0) %Deals_obj_map)
              (canon %init_peer_id% %Deals_obj_map  Deals_obj)
             )
            )
@@ -90,15 +90,15 @@ export const showSubnet_script = `
                (ap "Failed to resolve subnet: " $array-inline)
                (ap ret.$.error $array-inline)
               )
-              (canon %init_peer_id% $array-inline  #$array-inline-0)
+              (canon %init_peer_id% $array-inline  #array-inline-0)
              )
             )
-            (call %init_peer_id% ("run-console" "print") [#$array-inline-0])
+            (call %init_peer_id% ("run-console" "print") [#array-inline-0])
            )
           )
           (new $-hop-
-           (new #$-hopc-
-            (canon -relay- $-hop-  #$-hopc-)
+           (new #-hopc-
+            (canon -relay- $-hop-  #-hopc-)
            )
           )
          )
@@ -111,8 +111,8 @@ export const showSubnet_script = `
               (null)
              )
              (new $-hop-
-              (new #$-hopc-
-               (canon -relay- $-hop-  #$-hopc-)
+              (new #-hopc-
+               (canon -relay- $-hop-  #-hopc-)
               )
              )
             )
@@ -120,8 +120,8 @@ export const showSubnet_script = `
            )
           )
           (new $-hop-
-           (new #$-hopc-
-            (canon -relay- $-hop-  #$-hopc-)
+           (new #-hopc-
+            (canon -relay- $-hop-  #-hopc-)
            )
           )
          )
@@ -147,13 +147,13 @@ export const showSubnet_script = `
                       (seq
                        (seq
                         (new $-hop-
-                         (new #$-hopc-
-                          (canon -relay- $-hop-  #$-hopc-)
+                         (new #-hopc-
+                          (canon -relay- $-hop-  #-hopc-)
                          )
                         )
                         (new $-hop-
-                         (new #$-hopc-
-                          (canon w-0.$.host_id $-hop-  #$-hopc-)
+                         (new #-hopc-
+                          (canon w-0.$.host_id $-hop-  #-hopc-)
                          )
                         )
                        )
@@ -229,24 +229,24 @@ export const showSubnet_script = `
                        (seq
                         (xor
                          (seq
-                          (canon w-0.$.worker_id.[0] $services_aliases  #$push-to-stream-118)
-                          (ap #$push-to-stream-118 $option-inline-1)
+                          (canon w-0.$.worker_id.[0] $services_aliases  #push-to-stream-118)
+                          (ap #push-to-stream-118 $option-inline-1)
                          )
                          (null)
                         )
-                        (canon w-0.$.worker_id.[0] $option-inline-1  #$option-inline-1-0)
+                        (canon w-0.$.worker_id.[0] $option-inline-1  #option-inline-1-0)
                        )
                       )
                       (new $option-inline-2
                        (seq
                         (xor
                          (seq
-                          (canon w-0.$.worker_id.[0] $spells_aliases  #$push-to-stream-123)
-                          (ap #$push-to-stream-123 $option-inline-2)
+                          (canon w-0.$.worker_id.[0] $spells_aliases  #push-to-stream-123)
+                          (ap #push-to-stream-123 $option-inline-2)
                          )
                          (null)
                         )
-                        (canon w-0.$.worker_id.[0] $option-inline-2  #$option-inline-2-0)
+                        (canon w-0.$.worker_id.[0] $option-inline-2  #option-inline-2-0)
                        )
                       )
                      )
@@ -257,9 +257,9 @@ export const showSubnet_script = `
                        (seq
                         (seq
                          (ap ("host_id" w-0.$.host_id) %WorkerServices_obj_map)
-                         (ap ("services" #$option-inline-1-0) %WorkerServices_obj_map)
+                         (ap ("services" #option-inline-1-0) %WorkerServices_obj_map)
                         )
-                        (ap ("spells" #$option-inline-2-0) %WorkerServices_obj_map)
+                        (ap ("spells" #option-inline-2-0) %WorkerServices_obj_map)
                        )
                        (ap ("worker_id" w-0.$.worker_id) %WorkerServices_obj_map)
                       )
@@ -270,14 +270,14 @@ export const showSubnet_script = `
                    (ap WorkerServices_obj $services)
                   )
                   (new $-hop-
-                   (new #$-hopc-
-                    (canon w-0.$.host_id $-hop-  #$-hopc-)
+                   (new #-hopc-
+                    (canon w-0.$.host_id $-hop-  #-hopc-)
                    )
                   )
                  )
                  (new $-hop-
-                  (new #$-hopc-
-                   (canon -relay- $-hop-  #$-hopc-)
+                  (new #-hopc-
+                   (canon -relay- $-hop-  #-hopc-)
                   )
                  )
                 )
@@ -285,19 +285,19 @@ export const showSubnet_script = `
                  (seq
                   (seq
                    (new $-hop-
-                    (new #$-hopc-
-                     (canon w-0.$.host_id $-hop-  #$-hopc-)
+                    (new #-hopc-
+                     (canon w-0.$.host_id $-hop-  #-hopc-)
                     )
                    )
                    (new $-hop-
-                    (new #$-hopc-
-                     (canon -relay- $-hop-  #$-hopc-)
+                    (new #-hopc-
+                     (canon -relay- $-hop-  #-hopc-)
                     )
                    )
                   )
                   (new $-hop-
-                   (new #$-hopc-
-                    (canon %init_peer_id% $-hop-  #$-hopc-)
+                   (new #-hopc-
+                    (canon %init_peer_id% $-hop-  #-hopc-)
                    )
                   )
                  )
@@ -353,9 +353,9 @@ export const showSubnet_script = `
        (null)
       )
      )
-     (canon %init_peer_id% $services  #$-services-fix-0)
+     (canon %init_peer_id% $services  #-services-fix-0)
     )
-    (ap #$-services-fix-0 -services-flat-0)
+    (ap #-services-fix-0 -services-flat-0)
    )
    (call %init_peer_id% ("callbackSrv" "response") [-services-flat-0])
   )
@@ -465,9 +465,9 @@ export const computeSizePersist_script = `
                      )
                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreiaguifeta7g4tjmrb5uhrgcgf5oy3ybpo5mqepzwq2tluoxybtmv4") %MyDeployment_obj_map)
+                    (ap ("definition" "bafkreigehznblahm4w6wgjdp3s7yxqxdbkqi4cldbrqf5lv4fljssoo6sq") %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-09T15:10:04.869Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-10T01:28:32.959Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -476,13 +476,13 @@ export const computeSizePersist_script = `
                )
                (null)
               )
-              (canon %init_peer_id% $option-inline  #$option-inline-0)
+              (canon %init_peer_id% $option-inline  #option-inline-0)
              )
             )
            )
            (new %Deals_obj_map
             (seq
-             (ap ("myDeployment" #$option-inline-0) %Deals_obj_map)
+             (ap ("myDeployment" #option-inline-0) %Deals_obj_map)
              (canon %init_peer_id% %Deals_obj_map  Deals_obj)
             )
            )
@@ -507,15 +507,15 @@ export const computeSizePersist_script = `
                (ap "Failed to resolve subnet: " $array-inline)
                (ap ret.$.error $array-inline)
               )
-              (canon %init_peer_id% $array-inline  #$array-inline-0)
+              (canon %init_peer_id% $array-inline  #array-inline-0)
              )
             )
-            (call %init_peer_id% ("run-console" "print") [#$array-inline-0])
+            (call %init_peer_id% ("run-console" "print") [#array-inline-0])
            )
           )
           (new $-hop-
-           (new #$-hopc-
-            (canon -relay- $-hop-  #$-hopc-)
+           (new #-hopc-
+            (canon -relay- $-hop-  #-hopc-)
            )
           )
          )
@@ -528,8 +528,8 @@ export const computeSizePersist_script = `
               (null)
              )
              (new $-hop-
-              (new #$-hopc-
-               (canon -relay- $-hop-  #$-hopc-)
+              (new #-hopc-
+               (canon -relay- $-hop-  #-hopc-)
               )
              )
             )
@@ -537,8 +537,8 @@ export const computeSizePersist_script = `
            )
           )
           (new $-hop-
-           (new #$-hopc-
-            (canon -relay- $-hop-  #$-hopc-)
+           (new #-hopc-
+            (canon -relay- $-hop-  #-hopc-)
            )
           )
          )
@@ -555,83 +555,274 @@ export const computeSizePersist_script = `
              (seq
               (seq
                (seq
-                (seq
-                 (new $-hop-
-                  (new #$-hopc-
-                   (canon -relay- $-hop-  #$-hopc-)
-                  )
-                 )
-                 (new $-hop-
-                  (new #$-hopc-
-                   (canon w-0.$.host_id $-hop-  #$-hopc-)
-                  )
+                (new $-hop-
+                 (new #-hopc-
+                  (canon -relay- $-hop-  #-hopc-)
                  )
                 )
-                (call w-0.$.worker_id.[0] ("vault" "put") ["qwerty"] ret-0)
+                (new $-hop-
+                 (new #-hopc-
+                  (canon w-0.$.host_id $-hop-  #-hopc-)
+                 )
+                )
                )
-               (call w-0.$.worker_id.[0] ("myService" "ls_vault") [] ret-1)
+               (call w-0.$.worker_id.[0] ("vault" "put") ["qwerty"] ret-0)
               )
-              (call w-0.$.worker_id.[0] ("myService" "file_size") [ret-0] ret-2)
+              (call w-0.$.worker_id.[0] ("myService" "file_size") [ret-0] ret-1)
              )
              (new -if-else-error-
               (new -else-error-
                (new -if-error-
                 (xor
-                 (match ret-2.$.success true
+                 (match ret-1.$.success true
                   (seq
-                   (call w-0.$.worker_id.[0] ("myService" "write_file_size") [ret-2.$.size] ret-3)
+                   (call w-0.$.worker_id.[0] ("myService" "write_file_size") [ret-1.$.size] ret-2)
                    (new -if-else-error-
                     (new -else-error-
                      (new -if-error-
                       (xor
-                       (seq
+                       (match ret-2.$.success true
                         (seq
-                         (match ret-3.$.success true
-                          (seq
-                           (seq
-                            (seq
-                             (call w-0.$.worker_id.[0] ("myService" "pack") [ret-3.$.path ret-0 "qwerty_size"] ret-4)
-                             (new $option-inline-1
+                         (seq
+                          (call w-0.$.worker_id.[0] ("myService" "pack") [ret-2.$.path "car"] ret-3)
+                          (call w-0.$.worker_id.[0] ("myService" "upload_ipfs") ["car"] ret-4)
+                         )
+                         (new -if-else-error-
+                          (new -else-error-
+                           (new -if-error-
+                            (xor
+                             (match ret-4.$.success true
                               (seq
-                               (xor
-                                (ap ret-4 $option-inline-1)
-                                (null)
+                               (call w-0.$.worker_id.[0] ("myService" "seal_data") [ret-3 ret-4.$.hash ret-1.$.size ""] ret-5)
+                               (new -if-else-error-
+                                (new -else-error-
+                                 (new -if-error-
+                                  (xor
+                                   (seq
+                                    (seq
+                                     (match ret-5.$.success true
+                                      (seq
+                                       (seq
+                                        (new $option-inline-1
+                                         (seq
+                                          (xor
+                                           (ap "yay" $option-inline-1)
+                                           (null)
+                                          )
+                                          (canon w-0.$.worker_id.[0] $option-inline-1  #option-inline-1-0)
+                                         )
+                                        )
+                                        (new %Answer_obj_map
+                                         (seq
+                                          (seq
+                                           (seq
+                                            (ap ("cid" #option-inline-1-0) %Answer_obj_map)
+                                            (ap ("errors" []) %Answer_obj_map)
+                                           )
+                                           (ap ("worker" w-0) %Answer_obj_map)
+                                          )
+                                          (canon w-0.$.worker_id.[0] %Answer_obj_map  Answer_obj)
+                                         )
+                                        )
+                                       )
+                                       (ap Answer_obj $answers)
+                                      )
+                                     )
+                                     (new $-hop-
+                                      (new #-hopc-
+                                       (canon w-0.$.host_id $-hop-  #-hopc-)
+                                      )
+                                     )
+                                    )
+                                    (new $-hop-
+                                     (new #-hopc-
+                                      (canon -relay- $-hop-  #-hopc-)
+                                     )
+                                    )
+                                   )
+                                   (seq
+                                    (ap :error: -if-error-)
+                                    (xor
+                                     (seq
+                                      (seq
+                                       (match :error:.$.error_code 10001
+                                        (seq
+                                         (seq
+                                          (new $array-inline-1
+                                           (seq
+                                            (seq
+                                             (ap "sealing error" $array-inline-1)
+                                             (ap ret-5.$.error $array-inline-1)
+                                            )
+                                            (canon w-0.$.worker_id.[0] $array-inline-1  #array-inline-1-0)
+                                           )
+                                          )
+                                          (new %Answer_obj-0_map
+                                           (seq
+                                            (seq
+                                             (seq
+                                              (ap ("cid" []) %Answer_obj-0_map)
+                                              (ap ("errors" #array-inline-1-0) %Answer_obj-0_map)
+                                             )
+                                             (ap ("worker" w-0) %Answer_obj-0_map)
+                                            )
+                                            (canon w-0.$.worker_id.[0] %Answer_obj-0_map  Answer_obj-0)
+                                           )
+                                          )
+                                         )
+                                         (ap Answer_obj-0 $answers)
+                                        )
+                                       )
+                                       (new $-hop-
+                                        (new #-hopc-
+                                         (canon w-0.$.host_id $-hop-  #-hopc-)
+                                        )
+                                       )
+                                      )
+                                      (new $-hop-
+                                       (new #-hopc-
+                                        (canon -relay- $-hop-  #-hopc-)
+                                       )
+                                      )
+                                     )
+                                     (seq
+                                      (seq
+                                       (seq
+                                        (seq
+                                         (ap :error: -else-error-)
+                                         (xor
+                                          (seq
+                                           (match :error:.$.error_code 10001
+                                            (ap -if-error- -if-else-error-)
+                                           )
+                                           (new $-hop-
+                                            (new #-hopc-
+                                             (canon w-0.$.host_id $-hop-  #-hopc-)
+                                            )
+                                           )
+                                          )
+                                          (seq
+                                           (ap -else-error- -if-else-error-)
+                                           (new $-hop-
+                                            (new #-hopc-
+                                             (canon w-0.$.host_id $-hop-  #-hopc-)
+                                            )
+                                           )
+                                          )
+                                         )
+                                        )
+                                        (fail -if-else-error-)
+                                       )
+                                       (new $-hop-
+                                        (new #-hopc-
+                                         (canon w-0.$.host_id $-hop-  #-hopc-)
+                                        )
+                                       )
+                                      )
+                                      (new $-hop-
+                                       (new #-hopc-
+                                        (canon -relay- $-hop-  #-hopc-)
+                                       )
+                                      )
+                                     )
+                                    )
+                                   )
+                                  )
+                                 )
+                                )
                                )
-                               (canon w-0.$.worker_id.[0] $option-inline-1  #$option-inline-1-0)
                               )
                              )
-                            )
-                            (new %Answer_obj_map
                              (seq
-                              (seq
+                              (ap :error: -if-error-)
+                              (xor
+                               (seq
+                                (seq
+                                 (match :error:.$.error_code 10001
+                                  (seq
+                                   (seq
+                                    (new $array-inline-2
+                                     (seq
+                                      (seq
+                                       (ap "upload error" $array-inline-2)
+                                       (ap ret-4.$.error $array-inline-2)
+                                      )
+                                      (canon w-0.$.worker_id.[0] $array-inline-2  #array-inline-2-0)
+                                     )
+                                    )
+                                    (new %Answer_obj-1_map
+                                     (seq
+                                      (seq
+                                       (seq
+                                        (ap ("cid" []) %Answer_obj-1_map)
+                                        (ap ("errors" #array-inline-2-0) %Answer_obj-1_map)
+                                       )
+                                       (ap ("worker" w-0) %Answer_obj-1_map)
+                                      )
+                                      (canon w-0.$.worker_id.[0] %Answer_obj-1_map  Answer_obj-1)
+                                     )
+                                    )
+                                   )
+                                   (ap Answer_obj-1 $answers)
+                                  )
+                                 )
+                                 (new $-hop-
+                                  (new #-hopc-
+                                   (canon w-0.$.host_id $-hop-  #-hopc-)
+                                  )
+                                 )
+                                )
+                                (new $-hop-
+                                 (new #-hopc-
+                                  (canon -relay- $-hop-  #-hopc-)
+                                 )
+                                )
+                               )
                                (seq
                                 (seq
                                  (seq
-                                  (ap ("cid" #$option-inline-1-0) %Answer_obj_map)
-                                  (ap ("errors" []) %Answer_obj_map)
+                                  (seq
+                                   (ap :error: -else-error-)
+                                   (xor
+                                    (seq
+                                     (match :error:.$.error_code 10001
+                                      (ap -if-error- -if-else-error-)
+                                     )
+                                     (new $-hop-
+                                      (new #-hopc-
+                                       (canon w-0.$.host_id $-hop-  #-hopc-)
+                                      )
+                                     )
+                                    )
+                                    (seq
+                                     (ap -else-error- -if-else-error-)
+                                     (new $-hop-
+                                      (new #-hopc-
+                                       (canon w-0.$.host_id $-hop-  #-hopc-)
+                                      )
+                                     )
+                                    )
+                                   )
+                                  )
+                                  (fail -if-else-error-)
                                  )
-                                 (ap ("ls" ret-1) %Answer_obj_map)
+                                 (new $-hop-
+                                  (new #-hopc-
+                                   (canon w-0.$.host_id $-hop-  #-hopc-)
+                                  )
+                                 )
                                 )
-                                (ap ("vault_put" ret-0) %Answer_obj_map)
+                                (new $-hop-
+                                 (new #-hopc-
+                                  (canon -relay- $-hop-  #-hopc-)
+                                 )
+                                )
                                )
-                               (ap ("worker" w-0) %Answer_obj_map)
                               )
-                              (canon w-0.$.worker_id.[0] %Answer_obj_map  Answer_obj)
                              )
                             )
                            )
-                           (ap Answer_obj $answers)
                           )
-                         )
-                         (new $-hop-
-                          (new #$-hopc-
-                           (canon w-0.$.host_id $-hop-  #$-hopc-)
-                          )
-                         )
-                        )
-                        (new $-hop-
-                         (new #$-hopc-
-                          (canon -relay- $-hop-  #$-hopc-)
                          )
                         )
                        )
@@ -643,46 +834,40 @@ export const computeSizePersist_script = `
                            (match :error:.$.error_code 10001
                             (seq
                              (seq
-                              (new $array-inline-1
+                              (new $array-inline-3
                                (seq
                                 (seq
-                                 (ap "write size" $array-inline-1)
-                                 (ap ret-3.$.error $array-inline-1)
+                                 (ap "write size" $array-inline-3)
+                                 (ap ret-2.$.error $array-inline-3)
                                 )
-                                (canon w-0.$.worker_id.[0] $array-inline-1  #$array-inline-1-0)
+                                (canon w-0.$.worker_id.[0] $array-inline-3  #array-inline-3-0)
                                )
                               )
-                              (new %Answer_obj-0_map
+                              (new %Answer_obj-2_map
                                (seq
                                 (seq
                                  (seq
-                                  (seq
-                                   (seq
-                                    (ap ("cid" []) %Answer_obj-0_map)
-                                    (ap ("errors" #$array-inline-1-0) %Answer_obj-0_map)
-                                   )
-                                   (ap ("ls" ret-1) %Answer_obj-0_map)
-                                  )
-                                  (ap ("vault_put" ret-0) %Answer_obj-0_map)
+                                  (ap ("cid" []) %Answer_obj-2_map)
+                                  (ap ("errors" #array-inline-3-0) %Answer_obj-2_map)
                                  )
-                                 (ap ("worker" w-0) %Answer_obj-0_map)
+                                 (ap ("worker" w-0) %Answer_obj-2_map)
                                 )
-                                (canon w-0.$.worker_id.[0] %Answer_obj-0_map  Answer_obj-0)
+                                (canon w-0.$.worker_id.[0] %Answer_obj-2_map  Answer_obj-2)
                                )
                               )
                              )
-                             (ap Answer_obj-0 $answers)
+                             (ap Answer_obj-2 $answers)
                             )
                            )
                            (new $-hop-
-                            (new #$-hopc-
-                             (canon w-0.$.host_id $-hop-  #$-hopc-)
+                            (new #-hopc-
+                             (canon w-0.$.host_id $-hop-  #-hopc-)
                             )
                            )
                           )
                           (new $-hop-
-                           (new #$-hopc-
-                            (canon -relay- $-hop-  #$-hopc-)
+                           (new #-hopc-
+                            (canon -relay- $-hop-  #-hopc-)
                            )
                           )
                          )
@@ -697,16 +882,16 @@ export const computeSizePersist_script = `
                                 (ap -if-error- -if-else-error-)
                                )
                                (new $-hop-
-                                (new #$-hopc-
-                                 (canon w-0.$.host_id $-hop-  #$-hopc-)
+                                (new #-hopc-
+                                 (canon w-0.$.host_id $-hop-  #-hopc-)
                                 )
                                )
                               )
                               (seq
                                (ap -else-error- -if-else-error-)
                                (new $-hop-
-                                (new #$-hopc-
-                                 (canon w-0.$.host_id $-hop-  #$-hopc-)
+                                (new #-hopc-
+                                 (canon w-0.$.host_id $-hop-  #-hopc-)
                                 )
                                )
                               )
@@ -715,14 +900,14 @@ export const computeSizePersist_script = `
                             (fail -if-else-error-)
                            )
                            (new $-hop-
-                            (new #$-hopc-
-                             (canon w-0.$.host_id $-hop-  #$-hopc-)
+                            (new #-hopc-
+                             (canon w-0.$.host_id $-hop-  #-hopc-)
                             )
                            )
                           )
                           (new $-hop-
-                           (new #$-hopc-
-                            (canon -relay- $-hop-  #$-hopc-)
+                           (new #-hopc-
+                            (canon -relay- $-hop-  #-hopc-)
                            )
                           )
                          )
@@ -742,46 +927,40 @@ export const computeSizePersist_script = `
                      (match :error:.$.error_code 10001
                       (seq
                        (seq
-                        (new $array-inline-2
+                        (new $array-inline-4
                          (seq
                           (seq
-                           (ap "calculate size" $array-inline-2)
-                           (ap ret-2.$.error $array-inline-2)
+                           (ap "calculate size" $array-inline-4)
+                           (ap ret-1.$.error $array-inline-4)
                           )
-                          (canon w-0.$.worker_id.[0] $array-inline-2  #$array-inline-2-0)
+                          (canon w-0.$.worker_id.[0] $array-inline-4  #array-inline-4-0)
                          )
                         )
-                        (new %Answer_obj-1_map
+                        (new %Answer_obj-3_map
                          (seq
                           (seq
                            (seq
-                            (seq
-                             (seq
-                              (ap ("cid" []) %Answer_obj-1_map)
-                              (ap ("errors" #$array-inline-2-0) %Answer_obj-1_map)
-                             )
-                             (ap ("ls" ret-1) %Answer_obj-1_map)
-                            )
-                            (ap ("vault_put" ret-0) %Answer_obj-1_map)
+                            (ap ("cid" []) %Answer_obj-3_map)
+                            (ap ("errors" #array-inline-4-0) %Answer_obj-3_map)
                            )
-                           (ap ("worker" w-0) %Answer_obj-1_map)
+                           (ap ("worker" w-0) %Answer_obj-3_map)
                           )
-                          (canon w-0.$.worker_id.[0] %Answer_obj-1_map  Answer_obj-1)
+                          (canon w-0.$.worker_id.[0] %Answer_obj-3_map  Answer_obj-3)
                          )
                         )
                        )
-                       (ap Answer_obj-1 $answers)
+                       (ap Answer_obj-3 $answers)
                       )
                      )
                      (new $-hop-
-                      (new #$-hopc-
-                       (canon w-0.$.host_id $-hop-  #$-hopc-)
+                      (new #-hopc-
+                       (canon w-0.$.host_id $-hop-  #-hopc-)
                       )
                      )
                     )
                     (new $-hop-
-                     (new #$-hopc-
-                      (canon -relay- $-hop-  #$-hopc-)
+                     (new #-hopc-
+                      (canon -relay- $-hop-  #-hopc-)
                      )
                     )
                    )
@@ -796,16 +975,16 @@ export const computeSizePersist_script = `
                           (ap -if-error- -if-else-error-)
                          )
                          (new $-hop-
-                          (new #$-hopc-
-                           (canon w-0.$.host_id $-hop-  #$-hopc-)
+                          (new #-hopc-
+                           (canon w-0.$.host_id $-hop-  #-hopc-)
                           )
                          )
                         )
                         (seq
                          (ap -else-error- -if-else-error-)
                          (new $-hop-
-                          (new #$-hopc-
-                           (canon w-0.$.host_id $-hop-  #$-hopc-)
+                          (new #-hopc-
+                           (canon w-0.$.host_id $-hop-  #-hopc-)
                           )
                          )
                         )
@@ -814,14 +993,14 @@ export const computeSizePersist_script = `
                       (fail -if-else-error-)
                      )
                      (new $-hop-
-                      (new #$-hopc-
-                       (canon w-0.$.host_id $-hop-  #$-hopc-)
+                      (new #-hopc-
+                       (canon w-0.$.host_id $-hop-  #-hopc-)
                       )
                      )
                     )
                     (new $-hop-
-                     (new #$-hopc-
-                      (canon -relay- $-hop-  #$-hopc-)
+                     (new #-hopc-
+                      (canon -relay- $-hop-  #-hopc-)
                      )
                     )
                    )
@@ -836,19 +1015,19 @@ export const computeSizePersist_script = `
              (seq
               (seq
                (new $-hop-
-                (new #$-hopc-
-                 (canon w-0.$.host_id $-hop-  #$-hopc-)
+                (new #-hopc-
+                 (canon w-0.$.host_id $-hop-  #-hopc-)
                 )
                )
                (new $-hop-
-                (new #$-hopc-
-                 (canon -relay- $-hop-  #$-hopc-)
+                (new #-hopc-
+                 (canon -relay- $-hop-  #-hopc-)
                 )
                )
               )
               (new $-hop-
-               (new #$-hopc-
-                (canon %init_peer_id% $-hop-  #$-hopc-)
+               (new #-hopc-
+                (canon %init_peer_id% $-hop-  #-hopc-)
                )
               )
              )
@@ -872,9 +1051,9 @@ export const computeSizePersist_script = `
        (null)
       )
      )
-     (canon %init_peer_id% $answers  #$-answers-fix-0)
+     (canon %init_peer_id% $answers  #-answers-fix-0)
     )
-    (ap #$-answers-fix-0 -answers-flat-0)
+    (ap #-answers-fix-0 -answers-flat-0)
    )
    (call %init_peer_id% ("callbackSrv" "response") [-answers-flat-0])
   )
@@ -900,19 +1079,19 @@ export function computeSizePersist(...args) {
                     "type": {
                         "name": "Answer",
                         "fields": {
-                            "errors": {
-                                "type": {
-                                    "name": "string",
-                                    "tag": "scalar"
-                                },
-                                "tag": "array"
-                            },
                             "cid": {
                                 "type": {
                                     "name": "string",
                                     "tag": "scalar"
                                 },
                                 "tag": "option"
+                            },
+                            "errors": {
+                                "type": {
+                                    "name": "string",
+                                    "tag": "scalar"
+                                },
+                                "tag": "array"
                             },
                             "worker": {
                                 "name": "Worker",
@@ -934,17 +1113,6 @@ export function computeSizePersist(...args) {
                                     }
                                 },
                                 "tag": "struct"
-                            },
-                            "ls": {
-                                "type": {
-                                    "name": "string",
-                                    "tag": "scalar"
-                                },
-                                "tag": "array"
-                            },
-                            "vault_put": {
-                                "name": "string",
-                                "tag": "scalar"
                             }
                         },
                         "tag": "struct"

@@ -25,7 +25,7 @@ data Answer:
     worker: Worker
     errors: []string
 
-func computeSizePersist() -> []Answer:
+func sealMyData() -> []Answer:
     deals <- Deals.get()
     dealId = deals.myDeployment!.dealIdOriginal
 
@@ -40,13 +40,21 @@ func computeSizePersist() -> []Answer:
     for w <- subnet.workers:
         if w.worker_id != nil:
             on w.worker_id! via w.host_id:
-                vault <- Vault.put("qwerty")
+                vault <- Vault.put("the most important data ever")
                 result <- MyService.file_size(vault)
                 if result.success:
                     write <- MyService.write_file_size(result.size)
                     if write.success:
-                        cid <- MyService.pack(write.path, "/tmp/vault", "qwerty_size")
-                        answers <<- Answer(cid = ?[cid], worker = w, errors = nil)
+                        cid_bytes <- MyService.pack(write.path, "car")
+                        put_res <- MyService.upload_ipfs("car")
+                        if put_res.success:
+                            sealing <- MyService.seal_data(cid_bytes, put_res.hash, result.size, "http://host.docker.internal:80/api/v0/import-direct/123")
+                            if sealing.success:
+                                answers <<- Answer(cid = ?[Op.concat_strings("Successfully sent to sealing ", put_res.hash)], worker = w, errors = nil)
+                            else:
+                                answers <<- Answer(cid = nil, worker = w, errors = ["sealing error", sealing.error])
+                        else:
+                            answers <<- Answer(cid = nil, worker = w, errors = ["upload error", put_res.error])
                     else:
                         answers <<- Answer(cid = nil, worker = w, errors = ["write size", write.error])
                 else:
