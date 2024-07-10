@@ -1,10 +1,10 @@
 [package]
-name = "myService"
+name = "sealingService"
 version = "0.1.0"
 edition = "2018"
 
 [[bin]]
-name = "myService"
+name = "sealingService"
 path = "src/main.rs"
 
 [dependencies]

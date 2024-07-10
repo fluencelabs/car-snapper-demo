@@ -12,11 +12,12 @@ deals:
       {
         myDeployment:
           {
-            definition: bafkreigaonwio56d4q3hewwk2q76zbzjy3biwxdrjzbrnu6nkcjt6w4gmq,
-            timestamp: 2024-07-10T07:09:04.602Z,
+            definition: bafkreia3p4bosoebqhqkdtd267y6cq4ytxkvbkrefa3uuyf7j6sb4hh6oq,
+            timestamp: 2024-07-10T09:04:59.234Z,
             dealIdOriginal: "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B",
             dealId: ce85503de9399d4deca3c0b2bb3e9e7cfcbf9c6b,
-            chainNetworkId: 31337
+            chainNetworkId: 31337,
+            matched: true
           }
       }
   }

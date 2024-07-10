@@ -20,7 +20,7 @@ data WriteResult:
   success: bool
   error: string
 
-service MyService("myService"):
+service SealingService("sealingService"):
   file_size(file_path: string) -> SizeResult
   ls(dir: string) -> []string
   ls_vault() -> []string

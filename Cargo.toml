@@ -1,5 +1,5 @@
 [workspace]
-members = [ "src/services/myService/myService" ]
+members = [ "src/services/sealingService/sealingService" ]
 
 [workspace.dependencies.curl-effector-imports]
 version = "0.1.2"

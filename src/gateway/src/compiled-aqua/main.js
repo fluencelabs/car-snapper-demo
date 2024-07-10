@@ -43,14 +43,17 @@ export const showSubnet_script = `
                    (seq
                     (seq
                      (seq
-                      (ap ("chainNetworkId" 31337) %MyDeployment_obj_map)
-                      (ap ("dealId" "ce85503de9399d4deca3c0b2bb3e9e7cfcbf9c6b") %MyDeployment_obj_map)
+                      (seq
+                       (ap ("chainNetworkId" 31337) %MyDeployment_obj_map)
+                       (ap ("dealId" "ce85503de9399d4deca3c0b2bb3e9e7cfcbf9c6b") %MyDeployment_obj_map)
+                      )
+                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                      )
-                     (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
+                     (ap ("definition" "bafkreia3p4bosoebqhqkdtd267y6cq4ytxkvbkrefa3uuyf7j6sb4hh6oq") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreigaonwio56d4q3hewwk2q76zbzjy3biwxdrjzbrnu6nkcjt6w4gmq") %MyDeployment_obj_map)
+                    (ap ("matched" true) %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-10T07:09:04.602Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-10T09:04:59.234Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -229,8 +232,8 @@ export const showSubnet_script = `
                        (seq
                         (xor
                          (seq
-                          (canon w-0.$.worker_id.[0] $services_aliases  #push-to-stream-118)
-                          (ap #push-to-stream-118 $option-inline-1)
+                          (canon w-0.$.worker_id.[0] $services_aliases  #push-to-stream-119)
+                          (ap #push-to-stream-119 $option-inline-1)
                          )
                          (null)
                         )
@@ -241,8 +244,8 @@ export const showSubnet_script = `
                        (seq
                         (xor
                          (seq
-                          (canon w-0.$.worker_id.[0] $spells_aliases  #push-to-stream-123)
-                          (ap #push-to-stream-123 $option-inline-2)
+                          (canon w-0.$.worker_id.[0] $spells_aliases  #push-to-stream-124)
+                          (ap #push-to-stream-124 $option-inline-2)
                          )
                          (null)
                         )
@@ -460,14 +463,17 @@ export const sealMyData_script = `
                    (seq
                     (seq
                      (seq
-                      (ap ("chainNetworkId" 31337) %MyDeployment_obj_map)
-                      (ap ("dealId" "ce85503de9399d4deca3c0b2bb3e9e7cfcbf9c6b") %MyDeployment_obj_map)
+                      (seq
+                       (ap ("chainNetworkId" 31337) %MyDeployment_obj_map)
+                       (ap ("dealId" "ce85503de9399d4deca3c0b2bb3e9e7cfcbf9c6b") %MyDeployment_obj_map)
+                      )
+                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                      )
-                     (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
+                     (ap ("definition" "bafkreia3p4bosoebqhqkdtd267y6cq4ytxkvbkrefa3uuyf7j6sb4hh6oq") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreigaonwio56d4q3hewwk2q76zbzjy3biwxdrjzbrnu6nkcjt6w4gmq") %MyDeployment_obj_map)
+                    (ap ("matched" true) %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-10T07:09:04.602Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-10T09:04:59.234Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -568,7 +574,7 @@ export const sealMyData_script = `
                )
                (call w-0.$.worker_id.[0] ("vault" "put") ["the most important data ever"] ret-0)
               )
-              (call w-0.$.worker_id.[0] ("myService" "file_size") [ret-0] ret-1)
+              (call w-0.$.worker_id.[0] ("sealingService" "file_size") [ret-0] ret-1)
              )
              (new -if-else-error-
               (new -else-error-
@@ -576,7 +582,7 @@ export const sealMyData_script = `
                 (xor
                  (match ret-1.$.success true
                   (seq
-                   (call w-0.$.worker_id.[0] ("myService" "write_file_size") [ret-1.$.size] ret-2)
+                   (call w-0.$.worker_id.[0] ("sealingService" "write_file_size") [ret-1.$.size] ret-2)
                    (new -if-else-error-
                     (new -else-error-
                      (new -if-error-
@@ -584,8 +590,8 @@ export const sealMyData_script = `
                        (match ret-2.$.success true
                         (seq
                          (seq
-                          (call w-0.$.worker_id.[0] ("myService" "pack") [ret-2.$.path "car"] ret-3)
-                          (call w-0.$.worker_id.[0] ("myService" "upload_ipfs") ["car"] ret-4)
+                          (call w-0.$.worker_id.[0] ("sealingService" "pack") [ret-2.$.path "car"] ret-3)
+                          (call w-0.$.worker_id.[0] ("sealingService" "upload_ipfs") ["car"] ret-4)
                          )
                          (new -if-else-error-
                           (new -else-error-
@@ -593,7 +599,7 @@ export const sealMyData_script = `
                             (xor
                              (match ret-4.$.success true
                               (seq
-                               (call w-0.$.worker_id.[0] ("myService" "seal_data") [ret-3 ret-4.$.hash ret-1.$.size "http://host.docker.internal:7020/api/v0/import-direct/123"] ret-5)
+                               (call w-0.$.worker_id.[0] ("sealingService" "seal_data") [ret-3 ret-4.$.hash ret-1.$.size "http://host.docker.internal:7020/api/v0/import-direct/123"] ret-5)
                                (new -if-else-error-
                                 (new -else-error-
                                  (new -if-error-
@@ -619,8 +625,8 @@ export const sealMyData_script = `
                                          (seq
                                           (seq
                                            (seq
-                                            (ap ("cid" #option-inline-1-0) %Answer_obj_map)
                                             (ap ("errors" []) %Answer_obj_map)
+                                            (ap ("status" #option-inline-1-0) %Answer_obj_map)
                                            )
                                            (ap ("worker" w-0) %Answer_obj_map)
                                           )
@@ -664,8 +670,8 @@ export const sealMyData_script = `
                                            (seq
                                             (seq
                                              (seq
-                                              (ap ("cid" []) %Answer_obj-0_map)
                                               (ap ("errors" #array-inline-1-0) %Answer_obj-0_map)
+                                              (ap ("status" []) %Answer_obj-0_map)
                                              )
                                              (ap ("worker" w-0) %Answer_obj-0_map)
                                             )
@@ -757,8 +763,8 @@ export const sealMyData_script = `
                                      (seq
                                       (seq
                                        (seq
-                                        (ap ("cid" []) %Answer_obj-1_map)
                                         (ap ("errors" #array-inline-2-0) %Answer_obj-1_map)
+                                        (ap ("status" []) %Answer_obj-1_map)
                                        )
                                        (ap ("worker" w-0) %Answer_obj-1_map)
                                       )
@@ -850,8 +856,8 @@ export const sealMyData_script = `
                                (seq
                                 (seq
                                  (seq
-                                  (ap ("cid" []) %Answer_obj-2_map)
                                   (ap ("errors" #array-inline-3-0) %Answer_obj-2_map)
+                                  (ap ("status" []) %Answer_obj-2_map)
                                  )
                                  (ap ("worker" w-0) %Answer_obj-2_map)
                                 )
@@ -943,8 +949,8 @@ export const sealMyData_script = `
                          (seq
                           (seq
                            (seq
-                            (ap ("cid" []) %Answer_obj-3_map)
                             (ap ("errors" #array-inline-4-0) %Answer_obj-3_map)
+                            (ap ("status" []) %Answer_obj-3_map)
                            )
                            (ap ("worker" w-0) %Answer_obj-3_map)
                           )
@@ -1082,19 +1088,19 @@ export function sealMyData(...args) {
                     "type": {
                         "name": "Answer",
                         "fields": {
-                            "cid": {
-                                "type": {
-                                    "name": "string",
-                                    "tag": "scalar"
-                                },
-                                "tag": "option"
-                            },
                             "errors": {
                                 "type": {
                                     "name": "string",
                                     "tag": "scalar"
                                 },
                                 "tag": "array"
+                            },
+                            "status": {
+                                "type": {
+                                    "name": "string",
+                                    "tag": "scalar"
+                                },
+                                "tag": "option"
                             },
                             "worker": {
                                 "name": "Worker",

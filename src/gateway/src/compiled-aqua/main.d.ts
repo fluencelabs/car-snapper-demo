@@ -25,5 +25,5 @@ export type ShowSubnetResult = Promise<{ host_id: string; services: string[] | n
 
 export type SealMyDataParams = [config?: {ttl?: number}] | [peer: IFluenceClient$$, config?: {ttl?: number}];
 
-export type SealMyDataResult = Promise<{ cid: string | null; errors: string[]; worker: { host_id: string; pat_id: string; worker_id: string | null; }; }[]>;
+export type SealMyDataResult = Promise<{ errors: string[]; status: string | null; worker: { host_id: string; pat_id: string; worker_id: string | null; }; }[]>;
 

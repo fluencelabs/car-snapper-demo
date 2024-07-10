@@ -7,21 +7,11 @@ use "deals.aqua"
 use "hosts.aqua"
 import "services.aqua"
 
--- -- IMPORTANT: Add exports for all functions that you want to run
--- export helloWorld, helloWorldRemote, getInfo, getInfos
-
--- -- DOCUMENTATION:
--- -- https://fluence.dev
-
-
-
--- -- example of running services deployed using `fluence deploy`
--- -- with worker 'myDeployment' which has service 'MyService' with method 'greeting'
 
 export sealMyData, showSubnet
 
 data Answer:
-    cid: ?CID
+    status: ?CID
     worker: Worker
     errors: []string
 
@@ -41,24 +31,24 @@ func sealMyData() -> []Answer:
         if w.worker_id != nil:
             on w.worker_id! via w.host_id:
                 vault <- Vault.put("the most important data ever")
-                result <- MyService.file_size(vault)
+                result <- SealingService.file_size(vault)
                 if result.success:
-                    write <- MyService.write_file_size(result.size)
+                    write <- SealingService.write_file_size(result.size)
                     if write.success:
-                        cid_bytes <- MyService.pack(write.path, "car")
-                        put_res <- MyService.upload_ipfs("car")
+                        cid_bytes <- SealingService.pack(write.path, "car")
+                        put_res <- SealingService.upload_ipfs("car")
                         if put_res.success:
-                            sealing <- MyService.seal_data(cid_bytes, put_res.hash, result.size, "http://host.docker.internal:7020/api/v0/import-direct/123")
+                            sealing <- SealingService.seal_data(cid_bytes, put_res.hash, result.size, "http://host.docker.internal:7020/api/v0/import-direct/123")
                             if sealing.success:
-                                answers <<- Answer(cid = ?[Op.concat_strings("Successfully sent to sealing ", put_res.hash)], worker = w, errors = nil)
+                                answers <<- Answer(status = ?[Op.concat_strings("Successfully sent to sealing ", put_res.hash)], worker = w, errors = nil)
                             else:
-                                answers <<- Answer(cid = nil, worker = w, errors = ["sealing error", sealing.error])
+                                answers <<- Answer(status = nil, worker = w, errors = ["sealing error", sealing.error])
                         else:
-                            answers <<- Answer(cid = nil, worker = w, errors = ["upload error", put_res.error])
+                            answers <<- Answer(status = nil, worker = w, errors = ["upload error", put_res.error])
                     else:
-                        answers <<- Answer(cid = nil, worker = w, errors = ["write size", write.error])
+                        answers <<- Answer(status = nil, worker = w, errors = ["write size", write.error])
                 else:
-                    answers <<- Answer(cid = nil, worker = w, errors = ["calculate size", result.error])
+                    answers <<- Answer(status = nil, worker = w, errors = ["calculate size", result.error])
 
     <- answers
 
