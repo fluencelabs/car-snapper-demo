@@ -550,9 +550,9 @@ dependencies = [
 
 [[package]]
 name = "curl-effector-imports"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "038a61c600f38d32e553680693f7402528de0a1bf418422ddb8f11a0c97b9fa8"
+checksum = "73cdd23447c1b97636006c5b778ddb5250ee65618202a1f1b6d16b101b70e2a4"
 dependencies = [
  "curl-effector-types",
  "marine-rs-sdk",
@@ -560,9 +560,9 @@ dependencies = [
 
 [[package]]
 name = "curl-effector-types"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5e54f50b1b170ee7c1de5a1345a66ea2805e0b227fa880eac8dd2b16046f93f6"
+checksum = "512d48a7fc1ad82baa401a6c7063a1624f7412f45912f033f7812ba9a2475c1e"
 dependencies = [
  "marine-rs-sdk",
 ]

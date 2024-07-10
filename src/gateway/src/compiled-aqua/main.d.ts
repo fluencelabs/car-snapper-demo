@@ -23,7 +23,7 @@ export type ShowSubnetParams = [config?: {ttl?: number}] | [peer: IFluenceClient
 
 export type ShowSubnetResult = Promise<{ host_id: string; services: string[] | null; spells: string[] | null; worker_id: string | null; }[]>;
 
-export type ComputeSizePersistParams = [config?: {ttl?: number}] | [peer: IFluenceClient$$, config?: {ttl?: number}];
+export type SealMyDataParams = [config?: {ttl?: number}] | [peer: IFluenceClient$$, config?: {ttl?: number}];
 
-export type ComputeSizePersistResult = Promise<{ cid: string | null; errors: string[]; worker: { host_id: string; pat_id: string; worker_id: string | null; }; }[]>;
+export type SealMyDataResult = Promise<{ cid: string | null; errors: string[]; worker: { host_id: string; pat_id: string; worker_id: string | null; }; }[]>;
 

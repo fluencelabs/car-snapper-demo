@@ -2,7 +2,7 @@
 members = [ "src/services/myService/myService" ]
 
 [workspace.dependencies.curl-effector-imports]
-version = "0.1.1"
+version = "0.1.2"
 
 [workspace.dependencies.ipfs-effector-imports]
 version = "0.1.1"

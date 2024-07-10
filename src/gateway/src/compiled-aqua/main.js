@@ -48,9 +48,9 @@ export const showSubnet_script = `
                      )
                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreigehznblahm4w6wgjdp3s7yxqxdbkqi4cldbrqf5lv4fljssoo6sq") %MyDeployment_obj_map)
+                    (ap ("definition" "bafkreigaonwio56d4q3hewwk2q76zbzjy3biwxdrjzbrnu6nkcjt6w4gmq") %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-10T01:28:32.959Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-10T07:09:04.602Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -436,7 +436,7 @@ export function showSubnet(...args) {
     );
 }
 
-export const computeSizePersist_script = `
+export const sealMyData_script = `
 (xor
  (new $answers
   (seq
@@ -465,9 +465,9 @@ export const computeSizePersist_script = `
                      )
                      (ap ("dealIdOriginal" "0xCe85503De9399D4dECa3c0b2bb3e9e7CFCBf9C6B") %MyDeployment_obj_map)
                     )
-                    (ap ("definition" "bafkreigehznblahm4w6wgjdp3s7yxqxdbkqi4cldbrqf5lv4fljssoo6sq") %MyDeployment_obj_map)
+                    (ap ("definition" "bafkreigaonwio56d4q3hewwk2q76zbzjy3biwxdrjzbrnu6nkcjt6w4gmq") %MyDeployment_obj_map)
                    )
-                   (ap ("timestamp" "2024-07-10T01:28:32.959Z") %MyDeployment_obj_map)
+                   (ap ("timestamp" "2024-07-10T07:09:04.602Z") %MyDeployment_obj_map)
                   )
                   (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                  )
@@ -566,7 +566,7 @@ export const computeSizePersist_script = `
                  )
                 )
                )
-               (call w-0.$.worker_id.[0] ("vault" "put") ["qwerty"] ret-0)
+               (call w-0.$.worker_id.[0] ("vault" "put") ["the most important data ever"] ret-0)
               )
               (call w-0.$.worker_id.[0] ("myService" "file_size") [ret-0] ret-1)
              )
@@ -593,7 +593,7 @@ export const computeSizePersist_script = `
                             (xor
                              (match ret-4.$.success true
                               (seq
-                               (call w-0.$.worker_id.[0] ("myService" "seal_data") [ret-3 ret-4.$.hash ret-1.$.size ""] ret-5)
+                               (call w-0.$.worker_id.[0] ("myService" "seal_data") [ret-3 ret-4.$.hash ret-1.$.size "http://host.docker.internal:7020/api/v0/import-direct/123"] ret-5)
                                (new -if-else-error-
                                 (new -else-error-
                                  (new -if-error-
@@ -606,7 +606,10 @@ export const computeSizePersist_script = `
                                         (new $option-inline-1
                                          (seq
                                           (xor
-                                           (ap "yay" $option-inline-1)
+                                           (seq
+                                            (call w-0.$.worker_id.[0] ("op" "concat_strings") ["Successfully sent to sealing " ret-4.$.hash] ret-6)
+                                            (ap ret-6 $option-inline-1)
+                                           )
                                            (null)
                                           )
                                           (canon w-0.$.worker_id.[0] $option-inline-1  #option-inline-1-0)
@@ -1063,11 +1066,11 @@ export const computeSizePersist_script = `
 `;
 
 
-export function computeSizePersist(...args) {
+export function sealMyData(...args) {
     return callFunction$$(
         args,
         {
-    "functionName": "computeSizePersist",
+    "functionName": "sealMyData",
     "arrow": {
         "domain": {
             "fields": {},
@@ -1134,6 +1137,6 @@ export function computeSizePersist(...args) {
         "errorFnName": "error"
     }
 },
-        computeSizePersist_script
+        sealMyData_script
     );
 }

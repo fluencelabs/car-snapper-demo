@@ -18,7 +18,7 @@ import "services.aqua"
 -- -- example of running services deployed using `fluence deploy`
 -- -- with worker 'myDeployment' which has service 'MyService' with method 'greeting'
 
-export computeSizePersist, showSubnet
+export sealMyData, showSubnet
 
 data Answer:
     cid: ?CID
@@ -48,7 +48,7 @@ func sealMyData() -> []Answer:
                         cid_bytes <- MyService.pack(write.path, "car")
                         put_res <- MyService.upload_ipfs("car")
                         if put_res.success:
-                            sealing <- MyService.seal_data(cid_bytes, put_res.hash, result.size, "http://host.docker.internal:80/api/v0/import-direct/123")
+                            sealing <- MyService.seal_data(cid_bytes, put_res.hash, result.size, "http://host.docker.internal:7020/api/v0/import-direct/123")
                             if sealing.success:
                                 answers <<- Answer(cid = ?[Op.concat_strings("Successfully sent to sealing ", put_res.hash)], worker = w, errors = nil)
                             else:
